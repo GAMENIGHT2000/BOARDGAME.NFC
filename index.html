@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Board Game Night</title>
+
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -12,7 +13,11 @@
       color: white;
       padding: 40px 20px;
     }
-    h1 { color: orange; }
+
+    h1 {
+      color: orange;
+    }
+
     .button {
       display: block;
       padding: 20px;
@@ -25,55 +30,99 @@
       text-decoration: none;
       border-radius: 12px;
     }
-    .button:hover { background: #ffbb55; }
+
+    .button:hover {
+      background: #ffbb55;
+    }
   </style>
 </head>
+
 <body>
 
-<h1 id="gameTitle">Board Game Night</h1>
-<p>What would you like to do?</p>
+  <h1 id="gameTitle">Board Game Night</h1>
 
-<a id="statsButton" class="button" href="#">
-  🎲 Log a Play in BG Stats
-</a>
+  <p>What would you like to do?</p>
 
-<a id="videoButton" class="button" href="#">
-  ▶️ Watch How to Play
-</a>
+  <a id="statsButton" class="button" href="#">
+    🎲 Log a Play in BG Stats
+  </a>
 
-<script>
-  const games = {
-    "284189": {
-      name: "Foundations of Rome",
-      video: ""
-    }
-  };
+  <a id="videoButton" class="button" href="#">
+    ▶️ Watch How to Play
+  </a>
 
-  const params = new URLSearchParams(window.location.search);
-  const gameId = params.get("game") || "284189";
-  const game = games[gameId];
+  <script>
 
-  if (game) {
-    document.getElementById("gameTitle").textContent = game.name;
+    // BOARD GAME COLLECTION
+    // Add additional games here.
 
-    document.getElementById("statsButton").href =
-      "https://app.bgstatsapp.com/addPlay.html?gameId=" + gameId;
+    const games = {
 
-    const videoButton = document.getElementById("videoButton");
+      "284189": {
+        name: "Foundations of Rome",
+        video: "https://youtu.be/UPrS3Y8NbKA"
+      }
 
-    if (game.video) {
-      videoButton.href = game.video;
+    };
+
+    // IDENTIFY THE GAME FROM THE NFC LINK
+
+    const params = new URLSearchParams(window.location.search);
+
+    const gameId = params.get("game") || "284189";
+
+    const game = games[gameId];
+
+    // DISPLAY THE CORRECT GAME
+
+    if (game) {
+
+      document.getElementById("gameTitle").textContent =
+        game.name;
+
+      // BG STATS BUTTON
+
+      document.getElementById("statsButton").href =
+        "https://app.bgstatsapp.com/addPlay.html?gameId=" + gameId;
+
+      // YOUTUBE TUTORIAL BUTTON
+
+      const videoButton =
+        document.getElementById("videoButton");
+
+      if (game.video) {
+
+        videoButton.href = game.video;
+
+        videoButton.textContent =
+          "▶️ Watch How to Play";
+
+        videoButton.target = "_blank";
+        videoButton.rel = "noopener noreferrer";
+
+      } else {
+
+        videoButton.textContent =
+          "▶️ Tutorial Coming Soon";
+
+        videoButton.removeAttribute("href");
+
+      }
+
     } else {
-      videoButton.textContent = "▶️ Tutorial Coming Soon";
-      videoButton.removeAttribute("href");
+
+      document.getElementById("gameTitle").textContent =
+        "Game Not Found";
+
+      document.getElementById("statsButton").style.display =
+        "none";
+
+      document.getElementById("videoButton").style.display =
+        "none";
+
     }
-  } else {
-    document.getElementById("gameTitle").textContent =
-      "Game Not Found";
-    document.getElementById("statsButton").style.display = "none";
-    document.getElementById("videoButton").style.display = "none";
-  }
-</script>
+
+  </script>
 
 </body>
 </html>
