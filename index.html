@@ -1,120 +1,410 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Board Game Night</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Board Game Night</title>
 
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      background-color: #171717;
-      color: white;
-      padding: 40px 20px;
-    }
+<style>
+* {
+  box-sizing: border-box;
+}
 
-    h1 {
-      color: #ff8800;
-    }
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background: #171717;
+  color: white;
+  margin: 0;
+  padding: 30px 20px;
+}
 
-    .button {
-      display: block;
-      padding: 20px;
-      margin: 20px auto;
-      max-width: 350px;
-      background-color: #ff8800;
-      color: black;
-      font-size: 20px;
-      font-weight: bold;
-      text-decoration: none;
-      border-radius: 12px;
-    }
+h1 {
+  color: #ff8800;
+  font-size: 30px;
+}
 
-    .button:hover {
-      background-color: #ffbb55;
-    }
-  </style>
+.button {
+  display: block;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 350px;
+  background: #ff8800;
+  color: black;
+  font-size: 20px;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 12px;
+}
+
+.button:hover {
+  background: #ffbb55;
+}
+
+.meeple-container {
+  margin: 25px auto;
+  width: 190px;
+}
+
+.meeple-container svg {
+  width: 100%;
+  height: auto;
+}
+
+.ranking-label {
+  font-size: 18px;
+  color: #ff8800;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.expansions {
+  margin: 25px auto;
+  max-width: 350px;
+}
+
+.expansions h2 {
+  color: #ff8800;
+}
+
+.expansions a {
+  color: #ffbb55;
+}
+
+</style>
 </head>
 
 <body>
 
-  <h1 id="gameTitle">Board Game Night</h1>
+<h1 id="gameTitle">Board Game Night</h1>
 
-  <p>What would you like to do?</p>
+<div class="meeple-container">
 
-  <a id="statsButton" class="button">
-    🎲 Log a Play in BG Stats
-  </a>
+<svg viewBox="0 0 200 220"
+xmlns="http://www.w3.org/2000/svg"
+role="img"
+aria-labelledby="meepleTitle">
 
-  <a id="videoButton" class="button">
-    ▶️ Watch How to Play
-  </a>
+<title id="meepleTitle">Personal game ranking meeple</title>
 
-  <script>
-    // BOARD GAME COLLECTION
+<!-- ORANGE MEEPLE -->
+<path
+d="M100 15
+C75 15 63 32 63 51
+C63 65 70 76 76 83
+L43 73
+C27 68 14 78 16 93
+C18 107 36 116 51 122
+L58 143
+L37 181
+C30 194 39 205 53 205
+L80 205
+L100 175
+L120 205
+L147 205
+C161 205 170 194 163 181
+L142 143
+L149 122
+C164 116 182 107 184 93
+C186 78 173 68 157 73
+L124 83
+C130 76 137 65 137 51
+C137 32 125 15 100 15Z"
+fill="#ff8800"
+stroke="#ffbb55"
+stroke-width="5"
+/>
 
-    const games = {
-      "284189": {
-        name: "Foundations of Rome",
-        video: "https://youtu.be/UPrS3Y8NbKA"
-      },
+<!-- GLASSES -->
+<g fill="none" stroke="#222"
+stroke-width="5" stroke-linecap="round">
+<circle cx="83" cy="48" r="13"/>
+<circle cx="117" cy="48" r="13"/>
+<path d="M96 48 Q100 44 104 48"/>
+<path d="M70 46 L63 43"/>
+<path d="M130 46 L137 43"/>
+</g>
 
-      "207243": {
-        name: "The City of Kings",
-        video: "https://youtu.be/_rrLng3gstY"
-      },
+<!-- BEARD -->
+<path
+d="M75 67
+Q76 91 100 98
+Q124 91 125 67
+Q116 78 109 72
+Q100 80 91 72
+Q84 78 75 67Z"
+fill="#54321e"
+/>
 
-      "371947": {
-        name: "3 Ring Circus",
-        video: "https://youtu.be/VvtE9fCbGS8"
-      }
-    };
+<!-- RANKING NUMBER -->
+<text
+id="rankingNumber"
+x="100"
+y="150"
+text-anchor="middle"
+font-size="43"
+font-weight="bold"
+fill="white"
+stroke="#222"
+stroke-width="1"
+paint-order="stroke">
+?
+</text>
 
-    // IDENTIFY GAME FROM NFC TAG
+</svg>
 
-    const params = new URLSearchParams(
-      window.location.search
-    );
+<div id="rankingLabel" class="ranking-label">
+Personal Ranking
+</div>
 
-    const gameId = params.get("game") || "284189";
+</div>
 
-    const game = games[gameId];
+<p>What would you like to do?</p>
 
-    const title = document.getElementById("gameTitle");
-    const statsButton = document.getElementById("statsButton");
-    const videoButton = document.getElementById("videoButton");
+<a id="statsButton" class="button">
+🎲 Log a Play in BG Stats
+</a>
 
-    if (game) {
+<a id="videoButton" class="button">
+▶️ Watch How to Play
+</a>
 
-      title.textContent = game.name;
+<div id="expansionSection" class="expansions"
+style="display:none">
+<h2>Expansions I Own</h2>
+<div id="expansionList"></div>
+</div>
 
-      statsButton.href =
-        "https://app.bgstatsapp.com/addPlay.html?gameId="
-        + encodeURIComponent(gameId);
+<script>
 
-      if (game.video) {
+// ======================================
+// BOARD GAME COLLECTION
+// ======================================
 
-        videoButton.href = game.video;
-        videoButton.target = "_blank";
-        videoButton.rel = "noopener noreferrer";
+const games = {
+
+  // ORIGINAL GAMES
+
+  "284189": {
+    name: "Foundations of Rome",
+    video: "https://youtu.be/UPrS3Y8NbKA",
+    ranking: null,
+    expansions: []
+  },
+
+  "207243": {
+    name: "The City of Kings",
+    video: "https://youtu.be/_rrLng3gstY",
+    ranking: null,
+    expansions: []
+  },
+
+  "371947": {
+    name: "3 Ring Circus",
+    video: "https://youtu.be/VvtE9fCbGS8",
+    ranking: null,
+    expansions: []
+  },
+
+  // SIX NEW GAMES
+
+  "378356": {
+    name: "The A.R.T. Project",
+    video: "https://youtu.be/gUssEHWWdrU",
+    ranking: 0,
+    expansions: []
+  },
+
+  "302260": {
+    name: "Abandon All Artichokes",
+    video: "https://youtu.be/WP1hqBnqAiY",
+    ranking: 0,
+    expansions: []
+  },
+
+  "207117": {
+    name: "Abandon Planet",
+    video: "https://youtu.be/TTT1TGEtlXk",
+    ranking: 4,
+    expansions: []
+  },
+
+  "163930": {
+    name: "Abracada...What?",
+    video: "https://youtu.be/RNsvlHipaT4",
+    ranking: 4,
+    expansions: []
+  },
+
+  "5": {
+    name: "Acquire",
+    video: "https://youtu.be/AVoUPu5O1os",
+    ranking: 6,
+    expansions: []
+  },
+
+  "202408": {
+    name: "Adrenaline",
+    video: "https://youtu.be/2TGT9k9YewM",
+    ranking: 6,
+    expansions: []
+  }
+
+};
+
+// ======================================
+// IDENTIFY GAME FROM NFC TAG
+// ======================================
+
+const params = new URLSearchParams(
+  window.location.search
+);
+
+const gameId = params.get("game") || "284189";
+
+const game = games[gameId];
+
+const title = document.getElementById("gameTitle");
+
+const statsButton =
+  document.getElementById("statsButton");
+
+const videoButton =
+  document.getElementById("videoButton");
+
+const rankingNumber =
+  document.getElementById("rankingNumber");
+
+const rankingLabel =
+  document.getElementById("rankingLabel");
+
+const expansionSection =
+  document.getElementById("expansionSection");
+
+const expansionList =
+  document.getElementById("expansionList");
+
+// ======================================
+// DISPLAY GAME
+// ======================================
+
+if (game) {
+
+  title.textContent = game.name;
+
+  document.title = game.name + " | Board Game Night";
+
+  // BG STATS BUTTON
+
+  statsButton.href =
+    "https://app.bgstatsapp.com/addPlay.html?gameId="
+    + encodeURIComponent(gameId);
+
+  // VIDEO BUTTON
+
+  if (game.video) {
+
+    videoButton.href = game.video;
+
+    videoButton.target = "_blank";
+
+    videoButton.rel = "noopener noreferrer";
+
+  } else {
+
+    videoButton.textContent =
+      "▶️ Tutorial Coming Soon";
+
+    videoButton.removeAttribute("href");
+
+  }
+
+  // ======================================
+  // PERSONAL RANKING
+  // ======================================
+
+  if (game.ranking === 0) {
+
+    rankingNumber.textContent = "—";
+
+    rankingLabel.textContent =
+      "🎲 Not Played Yet";
+
+  } else if (game.ranking == null) {
+
+    rankingNumber.textContent = "?";
+
+    rankingLabel.textContent =
+      "Ranking Not Assigned";
+
+  } else {
+
+    rankingNumber.textContent =
+      game.ranking;
+
+    rankingLabel.textContent =
+      "My Personal Ranking";
+
+  }
+
+  // ======================================
+  // EXPANSIONS
+  // ======================================
+
+  if (
+    game.expansions &&
+    game.expansions.length > 0
+  ) {
+
+    expansionSection.style.display = "block";
+
+    game.expansions.forEach(expansion => {
+
+      const item = document.createElement("p");
+
+      if (expansion.id) {
+
+        const link = document.createElement("a");
+
+        link.href =
+          "https://boardgamegeek.com/boardgame/"
+          + encodeURIComponent(expansion.id);
+
+        link.textContent = expansion.name;
+
+        link.target = "_blank";
+
+        link.rel = "noopener noreferrer";
+
+        item.appendChild(link);
 
       } else {
 
-        videoButton.textContent = "▶️ Tutorial Coming Soon";
-        videoButton.removeAttribute("href");
+        item.textContent = expansion.name;
 
       }
 
-    } else {
+      expansionList.appendChild(item);
 
-      title.textContent = "Game Not Found";
+    });
 
-      statsButton.style.display = "none";
-      videoButton.style.display = "none";
+  }
 
-    }
-  </script>
+} else {
+
+  title.textContent = "Game Not Found";
+
+  document.querySelector(
+    ".meeple-container"
+  ).style.display = "none";
+
+  statsButton.style.display = "none";
+
+  videoButton.style.display = "none";
+
+}
+
+</script>
 
 </body>
 </html>
