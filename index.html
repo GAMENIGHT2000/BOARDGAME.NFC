@@ -40,7 +40,6 @@ h1 {
 <body>
 
 <h1 id="gameTitle">Board Game Night</h1>
-
 <p>What would you like to do?</p>
 
 <a id="statsButton" class="button">
@@ -53,13 +52,21 @@ h1 {
 
 <script>
 
-// ADD YOUR BOARD GAMES HERE
+// BOARD GAME COLLECTION
+// Add new games inside this list.
 
 const games = {
+
   "284189": {
     name: "Foundations of Rome",
     video: "https://youtu.be/UPrS3Y8NbKA"
+  },
+
+  "207243": {
+    name: "The City of Kings",
+    video: "https://youtu.be/_rrLng3gstY"
   }
+
 };
 
 // IDENTIFY GAME FROM NFC STICKER
@@ -79,11 +86,15 @@ if (game) {
   statsButton.href =
     "https://app.bgstatsapp.com/addPlay.html?gameId=" + gameId;
 
-  videoButton.href = game.video;
-  videoButton.target = "_blank";
-  videoButton.rel = "noopener noreferrer";
-
-  videoButton.textContent = "▶️ Watch How to Play";
+  if (game.video) {
+    videoButton.href = game.video;
+    videoButton.target = "_blank";
+    videoButton.rel = "noopener noreferrer";
+    videoButton.textContent = "▶️ Watch How to Play";
+  } else {
+    videoButton.textContent = "▶️ Tutorial Coming Soon";
+    videoButton.removeAttribute("href");
+  }
 
 } else {
 
