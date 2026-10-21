@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Board Game Night</title>
 
 <style>
-
 * {
   box-sizing: border-box;
 }
@@ -73,7 +70,6 @@ h1 {
 .expansions a {
   color: white;
 }
-
 </style>
 </head>
 
@@ -86,163 +82,139 @@ h1 {
 <div class="meeple-container">
 
 <svg
-viewBox="0 0 200 220"
-xmlns="http://www.w3.org/2000/svg"
-role="img"
-aria-labelledby="meepleTitle">
-
-<title id="meepleTitle">
-Orange meeple with blond hair, glasses and beard
-</title>
+  viewBox="0 0 200 220"
+  xmlns="http://www.w3.org/2000/svg"
+  role="img"
+  aria-label="Orange meeple with blond hair, glasses, beard and ranking"
+>
 
 <!-- ORANGE MEEPLE BODY -->
 
 <path
-d="
-M100 15
-C75 15 63 32 63 51
-C63 65 70 76 76 83
-L43 73
-C27 68 14 78 16 93
-C18 107 36 116 51 122
-L58 143
-L37 181
-C30 194 39 205 53 205
-L80 205
-L100 175
-L120 205
-L147 205
-C161 205 170 194 163 181
-L142 143
-L149 122
-C164 116 182 107 184 93
-C186 78 173 68 157 73
-L124 83
-C130 76 137 65 137 51
-C137 32 125 15 100 15Z
-"
-fill="#ff8800"
-stroke="#ffbb55"
-stroke-width="5"
+  d="M100 15
+  C75 15 63 32 63 51
+  C63 65 70 76 76 83
+  L43 73
+  C27 68 14 78 16 93
+  C18 107 36 116 51 122
+  L58 143
+  L37 181
+  C30 194 39 205 53 205
+  L80 205
+  L100 175
+  L120 205
+  L147 205
+  C161 205 170 194 163 181
+  L142 143
+  L149 122
+  C164 116 182 107 184 93
+  C186 78 173 68 157 73
+  L124 83
+  C130 76 137 65 137 51
+  C137 32 125 15 100 15Z"
+  fill="#ff8800"
+  stroke="#ffbb55"
+  stroke-width="5"
 />
 
 <!-- DARK BLOND HAIR -->
-<!-- LEFT SIDE PART, SWEPT ACROSS -->
 
 <path
-d="
-M65 43
-Q61 22 80 14
-Q100 5 119 14
-Q137 21 137 43
-Q126 35 115 30
-Q104 39 91 40
-Q78 42 65 43Z
-"
-fill="#b88642"
-stroke="#805527"
-stroke-width="2"
+  d="M65 43
+  Q61 22 80 14
+  Q100 5 119 14
+  Q137 21 137 43
+  Q126 35 115 30
+  Q104 39 91 40
+  Q78 42 65 43Z"
+  fill="#b88642"
+  stroke="#805527"
+  stroke-width="2"
 />
 
-<!-- HAIR SWEEP -->
+<!-- HAIR HIGHLIGHT -->
 
 <path
-d="
-M77 23
-Q97 14 119 21
-Q110 32 93 35
-Q82 37 72 34
-"
-fill="#d4a65a"
+  d="M77 23
+  Q97 14 119 21
+  Q110 32 93 35
+  Q82 37 72 34"
+  fill="#d4a65a"
 />
 
-<!-- LEFT SIDE PART DETAIL -->
+<!-- LEFT SIDE PART -->
 
 <path
-d="M78 19 Q74 27 73 36"
-fill="none"
-stroke="#805527"
-stroke-width="2"
+  d="M78 19 Q74 27 73 36"
+  fill="none"
+  stroke="#805527"
+  stroke-width="2"
 />
 
 <!-- GLASSES -->
 
 <g
-fill="none"
-stroke="#222"
-stroke-width="5"
-stroke-linecap="round">
-
-<circle cx="83" cy="50" r="13"/>
-
-<circle cx="117" cy="50" r="13"/>
-
-<path d="M96 50 Q100 46 104 50"/>
-
-<path d="M70 48 L63 45"/>
-
-<path d="M130 48 L137 45"/>
-
+  fill="none"
+  stroke="#222"
+  stroke-width="5"
+  stroke-linecap="round"
+>
+  <circle cx="83" cy="50" r="13"/>
+  <circle cx="117" cy="50" r="13"/>
+  <path d="M96 50 Q100 46 104 50"/>
+  <path d="M70 48 L63 45"/>
+  <path d="M130 48 L137 45"/>
 </g>
 
-<!-- BROWN BEARD -->
+<!-- MATCHING DARK BLOND BEARD -->
 
 <path
-d="
-M75 67
-Q76 91 100 98
-Q124 91 125 67
-Q116 78 109 72
-Q100 80 91 72
-Q84 78 75 67Z
-"
-fill="#54321e"
+  d="M75 67
+  Q76 91 100 98
+  Q124 91 125 67
+  Q116 78 109 72
+  Q100 80 91 72
+  Q84 78 75 67Z"
+  fill="#b88642"
 />
 
 <!-- BEARD DETAIL -->
 
 <path
-d="M88 83 Q100 94 112 83"
-fill="none"
-stroke="#805438"
-stroke-width="2"
+  d="M88 83 Q100 94 112 83"
+  fill="none"
+  stroke="#805527"
+  stroke-width="2"
 />
 
 <!-- GAME RANKING NUMBER -->
 
 <text
-id="rankingNumber"
-x="100"
-y="150"
-text-anchor="middle"
-font-size="43"
-font-weight="bold"
-fill="white"
-stroke="#222"
-stroke-width="1"
-paint-order="stroke">
-?
-</text>
+  id="rankingNumber"
+  x="100"
+  y="150"
+  text-anchor="middle"
+  font-size="43"
+  font-weight="bold"
+  fill="white"
+  stroke="#222"
+  stroke-width="1"
+  paint-order="stroke"
+>?</text>
 
 </svg>
 
-<div
-id="rankingLabel"
-class="ranking-label">
-Personal Ranking
+<div id="rankingLabel" class="ranking-label">
+Joey's Ranking
 </div>
 
 </div>
 
 <p>What would you like to do?</p>
 
-<!-- BG STATS BUTTON -->
-
 <a id="statsButton" class="button">
 🎲 Log a Play in BG Stats
 </a>
-
-<!-- YOUTUBE BUTTON -->
 
 <a id="videoButton" class="button">
 ▶️ Watch How to Play
@@ -251,14 +223,12 @@ Personal Ranking
 <!-- EXPANSIONS -->
 
 <div
-id="expansionSection"
-class="expansions"
-style="display:none">
-
-<h2>Expansions I Own</h2>
-
-<div id="expansionList"></div>
-
+  id="expansionSection"
+  class="expansions"
+  style="display:none"
+>
+  <h2>Expansions I Own</h2>
+  <div id="expansionList"></div>
 </div>
 
 <script>
@@ -268,8 +238,6 @@ style="display:none">
 // ======================================
 
 const games = {
-
-  // ORIGINAL GAMES
 
   "284189": {
     name: "Foundations of Rome",
@@ -291,8 +259,6 @@ const games = {
     ranking: null,
     expansions: []
   },
-
-  // SIX NEW GAMES
 
   "378356": {
     name: "The A.R.T. Project",
@@ -346,31 +312,17 @@ const params = new URLSearchParams(
   window.location.search
 );
 
-const gameId =
-  params.get("game") || "284189";
+const gameId = params.get("game") || "284189";
 
 const game = games[gameId];
 
-const title =
-  document.getElementById("gameTitle");
-
-const statsButton =
-  document.getElementById("statsButton");
-
-const videoButton =
-  document.getElementById("videoButton");
-
-const rankingNumber =
-  document.getElementById("rankingNumber");
-
-const rankingLabel =
-  document.getElementById("rankingLabel");
-
-const expansionSection =
-  document.getElementById("expansionSection");
-
-const expansionList =
-  document.getElementById("expansionList");
+const title = document.getElementById("gameTitle");
+const statsButton = document.getElementById("statsButton");
+const videoButton = document.getElementById("videoButton");
+const rankingNumber = document.getElementById("rankingNumber");
+const rankingLabel = document.getElementById("rankingLabel");
+const expansionSection = document.getElementById("expansionSection");
+const expansionList = document.getElementById("expansionList");
 
 // ======================================
 // DISPLAY SELECTED GAME
@@ -380,10 +332,9 @@ if (game) {
 
   title.textContent = game.name;
 
-  document.title =
-    game.name + " | Board Game Night";
+  document.title = game.name + " | Board Game Night";
 
-  // BG STATS
+  // BG STATS BUTTON
 
   statsButton.href =
     "https://app.bgstatsapp.com/addPlay.html?gameId="
@@ -394,45 +345,34 @@ if (game) {
   if (game.video) {
 
     videoButton.href = game.video;
-
     videoButton.target = "_blank";
-
     videoButton.rel = "noopener noreferrer";
 
   } else {
 
-    videoButton.textContent =
-      "▶️ Tutorial Coming Soon";
-
+    videoButton.textContent = "▶️ Tutorial Coming Soon";
     videoButton.removeAttribute("href");
 
   }
 
   // ======================================
-  // PERSONAL RANKING
+  // JOEY'S RANKING
   // ======================================
 
   if (game.ranking === 0) {
 
     rankingNumber.textContent = "—";
-
-    rankingLabel.textContent =
-      "🎲 Not Played Yet";
+    rankingLabel.textContent = "🎲 Not Played Yet";
 
   } else if (game.ranking == null) {
 
     rankingNumber.textContent = "?";
-
-    rankingLabel.textContent =
-      "Ranking Not Assigned";
+    rankingLabel.textContent = "Ranking Not Assigned";
 
   } else {
 
-    rankingNumber.textContent =
-      game.ranking;
-
-    rankingLabel.textContent =
-      "My Personal Ranking";
+    rankingNumber.textContent = game.ranking;
+    rankingLabel.textContent = "Joey's Ranking";
 
   }
 
@@ -460,9 +400,7 @@ if (game) {
           + encodeURIComponent(expansion.id);
 
         link.textContent = expansion.name;
-
         link.target = "_blank";
-
         link.rel = "noopener noreferrer";
 
         item.appendChild(link);
@@ -488,7 +426,6 @@ if (game) {
   ).style.display = "none";
 
   statsButton.style.display = "none";
-
   videoButton.style.display = "none";
 
 }
