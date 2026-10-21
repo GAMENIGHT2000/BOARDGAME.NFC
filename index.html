@@ -1,3 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Board Game Night</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background: #171717;
+  color: white;
+  padding: 40px 20px;
+}
+h1 {
+  color: #ff8800;
+}
+.button {
+  display: block;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 350px;
+  background: #ff8800;
+  color: black;
+  font-size: 20px;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 12px;
+}
+.button:hover {
+  background: #ffbb55;
+}
+</style>
+</head>
+<body>
+
+<h1 id="gameTitle">Board Game Night</h1>
+<p>What would you like to do?</p>
+
+<a id="statsButton" class="button">
+🎲 Log a Play in BG Stats
+</a>
+
+<a id="videoButton" class="button">
+▶️ Watch How to Play
+</a>
+
+<script>
+
+// BOARD GAME COLLECTION
+// Add new games inside this list.
+
 const games = {
   "284189": {
     name: "Foundations of Rome",
@@ -12,3 +64,39 @@ const games = {
     video: "https://youtu.be/VvtE9fCbGS8"
   }
 };
+
+// IDENTIFY GAME FROM NFC STICKER
+
+const params = new URLSearchParams(window.location.search);
+const gameId = params.get("game") || "284189";
+const game = games[gameId];
+
+const title = document.getElementById("gameTitle");
+const statsButton = document.getElementById("statsButton");
+const videoButton = document.getElementById("videoButton");
+
+if (game) {
+  title.textContent = game.name;
+
+  statsButton.href =
+    "https://app.bgstatsapp.com/addPlay.html?gameId=" + gameId;
+
+  if (game.video) {
+    videoButton.href = game.video;
+    videoButton.target = "_blank";
+    videoButton.rel = "noopener noreferrer";
+    videoButton.textContent = "▶️ Watch How to Play";
+  } else {
+    videoButton.textContent = "▶️ Tutorial Coming Soon";
+    videoButton.removeAttribute("href");
+  }
+
+} else {
+  title.textContent = "Game Not Found";
+  statsButton.style.display = "none";
+  videoButton.style.display = "none";
+}
+
+</script>
+</body>
+</html>
