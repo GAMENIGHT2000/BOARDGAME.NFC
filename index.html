@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Board Game Night</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #171717;
+      color: white;
+      padding: 40px 20px;
+    }
+    h1 { color: orange; }
+    .button {
+      display: block;
+      padding: 20px;
+      margin: 20px auto;
+      max-width: 350px;
+      background: #ff8800;
+      color: black;
+      font-size: 20px;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 12px;
+    }
+    .button:hover { background: #ffbb55; }
+  </style>
+</head>
+<body>
+
+<h1 id="gameTitle">Board Game Night</h1>
+<p>What would you like to do?</p>
+
+<a id="statsButton" class="button" href="#">
+  🎲 Log a Play in BG Stats
+</a>
+
+<a id="videoButton" class="button" href="#">
+  ▶️ Watch How to Play
+</a>
+
+<script>
+  const games = {
+    "284189": {
+      name: "Foundations of Rome",
+      video: ""
+    }
+  };
+
+  const params = new URLSearchParams(window.location.search);
+  const gameId = params.get("game") || "284189";
+  const game = games[gameId];
+
+  if (game) {
+    document.getElementById("gameTitle").textContent = game.name;
+
+    document.getElementById("statsButton").href =
+      "https://app.bgstatsapp.com/addPlay.html?gameId=" + gameId;
+
+    const videoButton = document.getElementById("videoButton");
+
+    if (game.video) {
+      videoButton.href = game.video;
+    } else {
+      videoButton.textContent = "▶️ Tutorial Coming Soon";
+      videoButton.removeAttribute("href");
+    }
+  } else {
+    document.getElementById("gameTitle").textContent =
+      "Game Not Found";
+    document.getElementById("statsButton").style.display = "none";
+    document.getElementById("videoButton").style.display = "none";
+  }
+</script>
+
+</body>
+</html>
