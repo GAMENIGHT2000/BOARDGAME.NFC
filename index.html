@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <title>Board Game Night</title>
 
 <style>
+
 * {
   box-sizing: border-box;
 }
@@ -13,14 +16,14 @@
 body {
   font-family: Arial, sans-serif;
   text-align: center;
-  background: #171717;
+  background: #012169;
   color: white;
   margin: 0;
   padding: 30px 20px;
 }
 
 h1 {
-  color: #ff8800;
+  color: #ff9900;
   font-size: 30px;
 }
 
@@ -43,7 +46,7 @@ h1 {
 
 .meeple-container {
   margin: 25px auto;
-  width: 190px;
+  width: 200px;
 }
 
 .meeple-container svg {
@@ -52,10 +55,10 @@ h1 {
 }
 
 .ranking-label {
-  font-size: 18px;
-  color: #ff8800;
+  font-size: 19px;
+  color: #ffbb55;
   font-weight: bold;
-  margin-top: 10px;
+  margin-top: 12px;
 }
 
 .expansions {
@@ -64,11 +67,11 @@ h1 {
 }
 
 .expansions h2 {
-  color: #ff8800;
+  color: #ffbb55;
 }
 
 .expansions a {
-  color: #ffbb55;
+  color: white;
 }
 
 </style>
@@ -78,18 +81,25 @@ h1 {
 
 <h1 id="gameTitle">Board Game Night</h1>
 
+<!-- CUSTOM ORANGE MEEPLE -->
+
 <div class="meeple-container">
 
-<svg viewBox="0 0 200 220"
+<svg
+viewBox="0 0 200 220"
 xmlns="http://www.w3.org/2000/svg"
 role="img"
 aria-labelledby="meepleTitle">
 
-<title id="meepleTitle">Personal game ranking meeple</title>
+<title id="meepleTitle">
+Orange meeple with blond hair, glasses and beard
+</title>
 
-<!-- ORANGE MEEPLE -->
+<!-- ORANGE MEEPLE BODY -->
+
 <path
-d="M100 15
+d="
+M100 15
 C75 15 63 32 63 51
 C63 65 70 76 76 83
 L43 73
@@ -109,34 +119,97 @@ C164 116 182 107 184 93
 C186 78 173 68 157 73
 L124 83
 C130 76 137 65 137 51
-C137 32 125 15 100 15Z"
+C137 32 125 15 100 15Z
+"
 fill="#ff8800"
 stroke="#ffbb55"
 stroke-width="5"
 />
 
+<!-- DARK BLOND HAIR -->
+<!-- LEFT SIDE PART, SWEPT ACROSS -->
+
+<path
+d="
+M65 43
+Q61 22 80 14
+Q100 5 119 14
+Q137 21 137 43
+Q126 35 115 30
+Q104 39 91 40
+Q78 42 65 43Z
+"
+fill="#b88642"
+stroke="#805527"
+stroke-width="2"
+/>
+
+<!-- HAIR SWEEP -->
+
+<path
+d="
+M77 23
+Q97 14 119 21
+Q110 32 93 35
+Q82 37 72 34
+"
+fill="#d4a65a"
+/>
+
+<!-- LEFT SIDE PART DETAIL -->
+
+<path
+d="M78 19 Q74 27 73 36"
+fill="none"
+stroke="#805527"
+stroke-width="2"
+/>
+
 <!-- GLASSES -->
-<g fill="none" stroke="#222"
-stroke-width="5" stroke-linecap="round">
-<circle cx="83" cy="48" r="13"/>
-<circle cx="117" cy="48" r="13"/>
-<path d="M96 48 Q100 44 104 48"/>
-<path d="M70 46 L63 43"/>
-<path d="M130 46 L137 43"/>
+
+<g
+fill="none"
+stroke="#222"
+stroke-width="5"
+stroke-linecap="round">
+
+<circle cx="83" cy="50" r="13"/>
+
+<circle cx="117" cy="50" r="13"/>
+
+<path d="M96 50 Q100 46 104 50"/>
+
+<path d="M70 48 L63 45"/>
+
+<path d="M130 48 L137 45"/>
+
 </g>
 
-<!-- BEARD -->
+<!-- BROWN BEARD -->
+
 <path
-d="M75 67
+d="
+M75 67
 Q76 91 100 98
 Q124 91 125 67
 Q116 78 109 72
 Q100 80 91 72
-Q84 78 75 67Z"
+Q84 78 75 67Z
+"
 fill="#54321e"
 />
 
-<!-- RANKING NUMBER -->
+<!-- BEARD DETAIL -->
+
+<path
+d="M88 83 Q100 94 112 83"
+fill="none"
+stroke="#805438"
+stroke-width="2"
+/>
+
+<!-- GAME RANKING NUMBER -->
+
 <text
 id="rankingNumber"
 x="100"
@@ -153,7 +226,9 @@ paint-order="stroke">
 
 </svg>
 
-<div id="rankingLabel" class="ranking-label">
+<div
+id="rankingLabel"
+class="ranking-label">
 Personal Ranking
 </div>
 
@@ -161,18 +236,29 @@ Personal Ranking
 
 <p>What would you like to do?</p>
 
+<!-- BG STATS BUTTON -->
+
 <a id="statsButton" class="button">
 🎲 Log a Play in BG Stats
 </a>
+
+<!-- YOUTUBE BUTTON -->
 
 <a id="videoButton" class="button">
 ▶️ Watch How to Play
 </a>
 
-<div id="expansionSection" class="expansions"
+<!-- EXPANSIONS -->
+
+<div
+id="expansionSection"
+class="expansions"
 style="display:none">
+
 <h2>Expansions I Own</h2>
+
 <div id="expansionList"></div>
+
 </div>
 
 <script>
@@ -260,11 +346,13 @@ const params = new URLSearchParams(
   window.location.search
 );
 
-const gameId = params.get("game") || "284189";
+const gameId =
+  params.get("game") || "284189";
 
 const game = games[gameId];
 
-const title = document.getElementById("gameTitle");
+const title =
+  document.getElementById("gameTitle");
 
 const statsButton =
   document.getElementById("statsButton");
@@ -285,22 +373,23 @@ const expansionList =
   document.getElementById("expansionList");
 
 // ======================================
-// DISPLAY GAME
+// DISPLAY SELECTED GAME
 // ======================================
 
 if (game) {
 
   title.textContent = game.name;
 
-  document.title = game.name + " | Board Game Night";
+  document.title =
+    game.name + " | Board Game Night";
 
-  // BG STATS BUTTON
+  // BG STATS
 
   statsButton.href =
     "https://app.bgstatsapp.com/addPlay.html?gameId="
     + encodeURIComponent(gameId);
 
-  // VIDEO BUTTON
+  // YOUTUBE TUTORIAL
 
   if (game.video) {
 
