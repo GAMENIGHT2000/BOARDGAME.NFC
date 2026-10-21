@@ -1,128 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Board Game Night</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Board Game Night</title>
 
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      background: #171717;
-      color: white;
-      padding: 40px 20px;
-    }
+<style>
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background: #171717;
+  color: white;
+  padding: 40px 20px;
+}
 
-    h1 {
-      color: orange;
-    }
+h1 {
+  color: #ff8800;
+}
 
-    .button {
-      display: block;
-      padding: 20px;
-      margin: 20px auto;
-      max-width: 350px;
-      background: #ff8800;
-      color: black;
-      font-size: 20px;
-      font-weight: bold;
-      text-decoration: none;
-      border-radius: 12px;
-    }
+.button {
+  display: block;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 350px;
+  background: #ff8800;
+  color: black;
+  font-size: 20px;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 12px;
+}
 
-    .button:hover {
-      background: #ffbb55;
-    }
-  </style>
+.button:hover {
+  background: #ffbb55;
+}
+</style>
 </head>
 
 <body>
 
-  <h1 id="gameTitle">Board Game Night</h1>
+<h1 id="gameTitle">Board Game Night</h1>
 
-  <p>What would you like to do?</p>
+<p>What would you like to do?</p>
 
-  <a id="statsButton" class="button" href="#">
-    🎲 Log a Play in BG Stats
-  </a>
+<a id="statsButton" class="button">
+🎲 Log a Play in BG Stats
+</a>
 
-  <a id="videoButton" class="button" href="#">
-    ▶️ Watch How to Play
-  </a>
+<a id="videoButton" class="button">
+▶️ Watch How to Play
+</a>
 
-  <script>
+<script>
 
-    // BOARD GAME COLLECTION
-    // Add additional games here.
+// ADD YOUR BOARD GAMES HERE
 
-    const games = {
+const games = {
+  "284189": {
+    name: "Foundations of Rome",
+    video: "https://youtu.be/UPrS3Y8NbKA"
+  }
+};
 
-      "284189": {
-        name: "Foundations of Rome",
-        video: "https://youtu.be/UPrS3Y8NbKA"
-      }
+// IDENTIFY GAME FROM NFC STICKER
 
-    };
+const params = new URLSearchParams(window.location.search);
+const gameId = params.get("game") || "284189";
+const game = games[gameId];
 
-    // IDENTIFY THE GAME FROM THE NFC LINK
+const title = document.getElementById("gameTitle");
+const statsButton = document.getElementById("statsButton");
+const videoButton = document.getElementById("videoButton");
 
-    const params = new URLSearchParams(window.location.search);
+if (game) {
 
-    const gameId = params.get("game") || "284189";
+  title.textContent = game.name;
 
-    const game = games[gameId];
+  statsButton.href =
+    "https://app.bgstatsapp.com/addPlay.html?gameId=" + gameId;
 
-    // DISPLAY THE CORRECT GAME
+  videoButton.href = game.video;
+  videoButton.target = "_blank";
+  videoButton.rel = "noopener noreferrer";
 
-    if (game) {
+  videoButton.textContent = "▶️ Watch How to Play";
 
-      document.getElementById("gameTitle").textContent =
-        game.name;
+} else {
 
-      // BG STATS BUTTON
+  title.textContent = "Game Not Found";
 
-      document.getElementById("statsButton").href =
-        "https://app.bgstatsapp.com/addPlay.html?gameId=" + gameId;
+  statsButton.style.display = "none";
+  videoButton.style.display = "none";
 
-      // YOUTUBE TUTORIAL BUTTON
-
-      const videoButton =
-        document.getElementById("videoButton");
-
-      if (game.video) {
-
-        videoButton.href = game.video;
-
-        videoButton.textContent =
-          "▶️ Watch How to Play";
-
-        videoButton.target = "_blank";
-        videoButton.rel = "noopener noreferrer";
-
-      } else {
-
-        videoButton.textContent =
-          "▶️ Tutorial Coming Soon";
-
-        videoButton.removeAttribute("href");
-
-      }
-
-    } else {
-
-      document.getElementById("gameTitle").textContent =
-        "Game Not Found";
-
-      document.getElementById("statsButton").style.display =
-        "none";
-
-      document.getElementById("videoButton").style.display =
-        "none";
-
-    }
-
-  </script>
+}
+</script>
 
 </body>
 </html>
