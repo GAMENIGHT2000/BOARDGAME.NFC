@@ -1,669 +1,335 @@
 <!DOCTYPE html>
-
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Joey's Board Game Night</title>
-
 <style>
-
 [hidden]{display:none!important}*{box-sizing:border-box}body{font-family:Arial,sans-serif;background:#012169;color:white;text-align:center;margin:0;padding:28px 16px}main{max-width:460px;margin:auto}h1{color:#ff9900;font-size:30px}.portrait{width:210px;height:210px;object-fit:cover;border-radius:50%;border:6px solid #ff9900;display:block;margin:18px auto 8px}.ranking{color:#ffcc76;font-weight:bold;font-size:22px;margin:8px 0 22px}.button{display:block;padding:18px 12px;margin:15px auto;max-width:350px;background:#ff8800;color:#111;font-size:19px;font-weight:bold;text-decoration:none;border-radius:12px}.button:hover{background:#ffbb55}.details{max-width:350px;margin:18px auto;text-align:left;background:#00194f;padding:16px;border-radius:12px;line-height:1.9}.details div{border-bottom:1px solid #244b91}.details div:last-child{border:0}.details .difficulty-row{background:#173e77;color:#ffdc80;border-left:4px solid #ffb02e;border-radius:6px;padding:3px 9px;margin:5px -9px}.expansions{margin:26px auto}.expansions a{color:#ffcc76}#error{color:#ffcc76}
-
 </style></head><body><main>
-
 <h1 id="gameTitle">Board Game Night</h1>
-
 <img class="portrait" id="joeyPicture" src="joey-neutral.jpg" alt="Cartoon Joey">
-
 <div class="ranking" id="rankingLabel">Joey's Ranking</div>
-
 <p>What would you like to do?</p>
-
 <a class="button" id="statsButton">🎲 Log a Play in BG Stats</a>
-
 <a class="button" id="videoButton">▶️ Watch How to Play</a>
-
 <section id="gameDetails" class="details" hidden></section>
-
 <section class="expansions" id="expansionSection" hidden><h2>Expansions I Own</h2><div id="expansionList"></div></section>
-
 <p id="error" hidden>Check the game ID in your NFC link.</p>
-
 </main><script>
-
 // Edit the games list below or regenerate it from your Excel spreadsheet.
-
 const games = {
-
   "37157": {
-
     "name": "Avalon",
-
     "video": "https://youtu.be/b5_seo3sAnc",
-
     "ranking": 0.0,
-
     "difficulty": 1.8333,
-
     "tutorialMinutes": 3,
-
     "shelf": "Mixed",
-
     "maxPlayers": 10,
-
     "year": 2003,
-
     "expansions": []
-
   },
-
   "371947": {
-
     "name": "3 Ring Circus",
-
     "video": "https://youtu.be/VvtE9fCbGS8",
-
     "ranking": 5.0,
-
     "difficulty": 2.76,
-
     "tutorialMinutes": 17,
-
     "shelf": 2,
-
     "maxPlayers": 4,
-
     "year": 2023,
-
     "expansions": []
-
   },
-
   "302260": {
-
     "name": "Abandon All Artichokes",
-
     "video": "https://youtu.be/WP1hqBnqAiY",
-
     "ranking": 0.0,
-
     "difficulty": 1.2375,
-
     "tutorialMinutes": 3,
-
     "shelf": "Mixed",
-
     "maxPlayers": 4,
-
     "year": 2020,
-
     "expansions": []
-
   },
-
   "183231": {
-
     "name": "Adventure Land",
-
     "video": "https://youtu.be/9wvJN5LtIVU",
-
     "ranking": 7.0,
-
     "difficulty": 1.8537,
-
     "tutorialMinutes": 15,
-
     "shelf": 2,
-
     "maxPlayers": 4,
-
     "year": 2015,
-
     "expansions": []
-
   },
-
   "326494": {
-
     "name": "The Adventures of Robin Hood",
-
     "video": "https://youtu.be/3W1TZUesAFQ",
-
     "ranking": 7.0,
-
     "difficulty": 1.8261,
-
     "tutorialMinutes": 4,
-
     "shelf": 2,
-
     "maxPlayers": 4,
-
     "year": 2021,
-
     "expansions": []
-
   },
-
   "161970": {
-
     "name": "Alchemists",
-
     "video": "https://youtu.be/gGd9XAprIiY",
-
     "ranking": 6.5,
-
     "difficulty": 3.923,
-
     "tutorialMinutes": 17,
-
     "shelf": 2,
-
     "maxPlayers": 4,
-
     "year": 2014,
-
     "expansions": []
-
   },
-
   "185343": {
-
     "name": "Anachrony",
-
     "video": "https://youtu.be/MoqFAuunCcE",
-
     "ranking": 0.0,
-
     "difficulty": 3.995,
-
     "tutorialMinutes": 35,
-
     "shelf": 2,
-
     "maxPlayers": 4,
-
     "year": 2017,
-
     "expansions": [
-
       {
-
         "name": "Anachrony: Classic Expansion Pack (on Shelf 2)",
-
         "id": "297528"
-
       }
-
     ]
-
   },
-
   "358661": {
-
     "name": "Andromeda's Edge",
-
     "video": "https://youtu.be/_50vWz6ESmk",
-
     "ranking": 0.0,
-
     "difficulty": 3.7461,
-
     "tutorialMinutes": 23,
-
     "shelf": 14,
-
     "maxPlayers": 5,
-
     "year": 2024,
-
     "expansions": [
-
       {
-
         "name": "Andromeda's Edge: Escalation (in box)",
-
         "id": "379786"
-
       }
-
     ]
-
   },
-
   "311193": {
-
     "name": "Anno 1800: The Board Game",
-
     "video": "https://youtu.be/fYQypK82lC4",
-
     "ranking": 0.0,
-
     "difficulty": 3.1296,
-
     "tutorialMinutes": 27,
-
     "shelf": 2,
-
     "maxPlayers": 4,
-
     "year": 2020,
-
     "expansions": []
-
   },
-
   "359871": {
-
     "name": "Arcs",
-
     "video": "https://youtu.be/cXSEi7TCF44",
-
     "ranking": 0.0,
-
     "difficulty": 3.4472,
-
     "tutorialMinutes": 27,
-
     "shelf": 2,
-
     "maxPlayers": 4,
-
     "year": 2024,
-
     "expansions": []
-
   },
-
   "342942": {
-
     "name": "Ark Nova",
-
     "video": "https://youtu.be/oPW0jMG1DTM",
-
     "ranking": 6.25,
-
     "difficulty": 3.7986,
-
     "tutorialMinutes": 18,
-
     "shelf": 2,
-
     "maxPlayers": 4,
-
     "year": 2021,
-
     "expansions": []
-
   },
-
   "285773": {
-
     "name": "Arkham Horror: Final Hour",
-
     "video": "https://youtu.be/bToBIGH2TuM",
-
     "ranking": 0.0,
-
     "difficulty": 2.2642,
-
     "tutorialMinutes": 7,
-
     "shelf": "Mixed",
-
     "maxPlayers": 4,
-
     "year": 2019,
-
     "expansions": []
-
   },
-
   "204675": {
-
     "name": "The Arrival",
-
     "video": "https://youtu.be/dc-PPXq2NII",
-
     "ranking": 0.0,
-
     "difficulty": 2.64,
-
     "tutorialMinutes": 6,
-
     "shelf": 2,
-
     "maxPlayers": 4,
-
     "year": 2016,
-
     "expansions": []
-
   },
-
   "230802": {
-
     "name": "Azul",
-
     "video": "https://youtu.be/193R2h2M3Yk",
-
     "ranking": 6.0,
-
     "difficulty": 1.7729,
-
     "tutorialMinutes": null,
-
     "shelf": 2,
-
     "maxPlayers": 4,
-
     "year": 2017,
-
     "expansions": []
-
   },
-
   "163930": {
-
     "name": "Abracada...What?",
-
     "video": "https://youtu.be/RNsvlHipaT4",
-
     "ranking": 4.0,
-
     "difficulty": 1.6316,
-
     "tutorialMinutes": 5,
-
     "shelf": 14,
-
     "maxPlayers": 5,
-
     "year": 2014,
-
     "expansions": []
-
   },
-
   "202408": {
-
     "name": "Adrenaline",
-
     "video": "https://youtu.be/2TGT9k9YewM",
-
     "ranking": 6.5,
-
     "difficulty": 2.3765,
-
     "tutorialMinutes": 21,
-
     "shelf": 14,
-
     "maxPlayers": 5,
-
     "year": 2016,
-
     "expansions": []
-
   },
-
   "31260": {
-
     "name": "Agricola",
-
     "video": "https://youtu.be/eTY-_WJ60a0",
-
     "ranking": 6.0,
-
     "difficulty": 3.6358,
-
     "tutorialMinutes": 10,
-
     "shelf": 2,
-
     "maxPlayers": 5,
-
     "year": 2007,
-
     "expansions": []
-
   },
-
   "90419": {
-
     "name": "Airlines Europe",
-
     "video": "https://youtu.be/hs12ruWUtXc",
-
     "ranking": 7.8,
-
     "difficulty": 2.4321,
-
     "tutorialMinutes": 9,
-
     "shelf": 14,
-
     "maxPlayers": 5,
-
     "year": 2011,
-
     "expansions": []
-
   },
-
   "181293": {
-
     "name": "Alien Artifacts",
-
     "video": "https://youtu.be/fp83cb4IDDc",
-
     "ranking": 0.0,
-
     "difficulty": 2.8904,
-
     "tutorialMinutes": 27,
-
     "shelf": 15,
-
     "maxPlayers": 5,
-
     "year": 2017,
-
     "expansions": []
-
   },
-
   "359838": {
-
     "name": "Almost Innocent",
-
     "video": "https://youtu.be/galXK1duwM8",
-
     "ranking": 0.0,
-
     "difficulty": 2,
-
     "tutorialMinutes": 8,
-
     "shelf": 15,
-
     "maxPlayers": 5,
-
     "year": 2023,
-
     "expansions": []
-
   },
-
   "400314": {
-
     "name": "Apiary",
-
     "video": "https://youtu.be/KdzNSPQlML0",
-
     "ranking": 0.0,
-
     "difficulty": 3.0137,
-
     "tutorialMinutes": 30,
-
     "shelf": 14,
-
     "maxPlayers": 5,
-
     "year": 2023,
-
     "expansions": []
-
   },
-
   "284189": {
-
     "name": "Foundations of Rome",
-
     "video": "https://youtu.be/UPrS3Y8NbKA",
-
     "ranking": null,
-
     "expansions": []
-
   },
-
   "207243": {
-
     "name": "The City of Kings",
-
     "video": "https://youtu.be/_rrLng3gstY",
-
     "ranking": null,
-
     "expansions": []
-
   },
-
   "378356": {
-
     "name": "The A.R.T. Project",
-
     "video": "https://youtu.be/gUssEHWWdrU",
-
     "ranking": 0,
-
     "expansions": []
-
   },
-
   "207117": {
-
     "name": "Abandon Planet",
-
     "video": "https://youtu.be/TTT1TGEtlXk",
-
     "ranking": 4,
-
     "expansions": []
-
   },
-
   "5": {
-
     "name": "Acquire",
-
     "video": "https://youtu.be/AVoUPu5O1os",
-
     "ranking": 6,
-
     "expansions": []
-
   }
-
 };
-
 const gameId = new URLSearchParams(location.search).get('game') || '284189';
-
 const game = games[gameId];
-
 const title = document.getElementById('gameTitle');
-
 const picture = document.getElementById('joeyPicture');
-
 const label = document.getElementById('rankingLabel');
-
 const stats = document.getElementById('statsButton');
-
 const video = document.getElementById('videoButton');
-
 if (!game) {
-
   title.textContent='Game Not Found';
-
   picture.hidden=true;label.hidden=true;stats.hidden=true;video.hidden=true;
-
   document.getElementById('error').hidden=false;
-
 } else {
-
   title.textContent=game.name;
-
   document.title=game.name+' | Joey’s Board Game Night';
-
   stats.href='https://app.bgstatsapp.com/addPlay.html?gameId='+encodeURIComponent(gameId);
-
   if(game.video){video.href=game.video;video.target='_blank';video.rel='noopener noreferrer';}
-
   else {video.textContent='▶️ Tutorial Coming Soon';video.removeAttribute('href');}
-
   const rank=game.ranking;
-
   if(rank===0){label.textContent='Not Played Yet';picture.src='joey-unplayed.jpg';}
-
   else if(rank==null){label.textContent='Ranking Not Assigned';picture.src='joey-neutral.jpg';}
-
   else {
-
     label.textContent='Joey’s Ranking: '+rank;
-
     picture.src=rank>7?'joey-excited.jpg':rank<4.5?'joey-disgusted.jpg':'joey-neutral.jpg';
-
   }
-
   const details=document.getElementById('gameDetails');
-
-  const fields=[['Shelf location',game.shelf],['Maximum players',game.maxPlayers],['Learning difficulty (1–5)',game.difficulty],['Tutorial length (minutes)',game.tutorialMinutes],['Published',game.year]];
-
+  const fields=[['Shelf location',game.shelf],['Maximum players',game.maxPlayers],['Learning Difficulty',game.difficulty],['Tutorial length (minutes)',game.tutorialMinutes],['Published',game.year]];
   for(const [key,value] of fields){
-
     if(value!==null&&value!==undefined&&value!==''){
-
       const line=document.createElement('div');const strong=document.createElement('strong');strong.textContent=key+': ';
-
       if(key.startsWith('Learning difficulty'))line.classList.add('difficulty-row');
-
-      line.append(strong,document.createTextNode(String(value)));details.appendChild(line);
-
+      line.append(strong,document.createTextNode(key==='Learning Difficulty' ? Number(value).toFixed(2)+' out of 5' : String(value)));details.appendChild(line);
     }
-
   }
-
   if(details.children.length){details.hidden=false;}
-
   if(Array.isArray(game.expansions)&&game.expansions.length){
-
     const section=document.getElementById('expansionSection');section.hidden=false;
-
     const list=document.getElementById('expansionList');
-
     for(const expansion of game.expansions){
-
       const p=document.createElement('p');
-
       if(expansion.id){const a=document.createElement('a');a.href='https://boardgamegeek.com/boardgame/'+encodeURIComponent(expansion.id);a.textContent=expansion.name;a.target='_blank';a.rel='noopener noreferrer';p.appendChild(a);}
-
       else{p.textContent=expansion.name;}
-
       list.appendChild(p);
-
     }
-
   }
-
 }
-
 </script></body></html>
