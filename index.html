@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Joey's Board Game Night</title><style>*{box-sizing:border-box}[hidden]{display:none!important}body{font-family:Arial,sans-serif;background:#012169;color:#fff;text-align:center;margin:0;padding:28px 16px}main{max-width:490px;margin:auto}h1{color:#ff9900;font-size:30px}.button{display:block;padding:17px 12px;margin:13px auto;max-width:390px;background:#ff8800;color:#111;font-size:18px;font-weight:bold;text-decoration:none;border:0;border-radius:12px;cursor:pointer}.button:hover,.button:focus{background:#ffbb55}.portrait{width:210px;height:210px;object-fit:cover;border-radius:50%;border:6px solid #ff9900;display:block;margin:18px auto 8px}.ranking{color:#ffcc76;font-weight:bold;font-size:22px;margin:8px 0 22px}.details{max-width:390px;margin:18px auto;text-align:left;background:#00194f;padding:16px;border-radius:12px;line-height:1.9}.details div{border-bottom:1px solid #244b91}.details div:last-child{border:0}.details .difficulty-row{background:#173e77;color:#ffdc80;border-left:4px solid #ffb02e;border-radius:6px;padding:3px 9px;margin:5px -9px}.expansions{margin:26px auto}.expansions h2{color:#ffcc76}.expansions a{color:#ffcc76}.expansions p{line-height:1.6}</style></head><body><main>
+<title>Joey's Board Game Night</title><style>*{box-sizing:border-box}[hidden]{display:none!important}body{font-family:Arial,sans-serif;background:#012169;color:#fff;text-align:center;margin:0;padding:28px 16px}main{max-width:490px;margin:auto}h1{color:#ff9900;font-size:30px}.button{display:block;padding:17px 12px;margin:13px auto;max-width:390px;background:#ff8800;color:#111;font-size:18px;font-weight:bold;text-decoration:none;border:0;border-radius:12px;cursor:pointer}.button:hover,.button:focus{background:#ffbb55}.portrait{width:210px;height:210px;object-fit:cover;border-radius:50%;border:6px solid #ff9900;display:block;margin:18px auto 8px}.ranking{color:#ffcc76;font-weight:bold;font-size:22px;margin:8px 0 22px}.shelf-location{display:inline-block;background:#ff8800;color:#111;border-radius:12px;padding:12px 22px;font-size:23px;font-weight:800;margin:8px auto 14px}.details{max-width:390px;margin:18px auto;text-align:left;background:#00194f;padding:16px;border-radius:12px;line-height:1.9}.details div{border-bottom:1px solid #244b91}.details div:last-child{border:0}.details .difficulty-row{background:#173e77;color:#ffdc80;border-left:4px solid #ffb02e;border-radius:6px;padding:3px 9px;margin:5px -9px}.expansions{margin:26px auto}.expansions h2{color:#ffcc76}.expansions a{color:#ffcc76}.expansions p{line-height:1.6}</style></head><body><main>
 <h1 id="pageTitle">Board Game Night</h1>
 <section id="shelfView" hidden><p>Choose a game from this shelf:</p><div id="shelfList"></div></section>
 <section id="gameView" hidden>
 <img class="portrait" id="joeyPicture" src="joey-neutral.jpg" alt="Cartoon Joey">
 <div class="ranking" id="rankingLabel"></div>
+<div class="shelf-location" id="gameShelf" hidden></div>
 <p>What would you like to do?</p>
 <a class="button" id="statsButton">🎲 Log a Play in BG Stats</a>
 <a class="button" id="videoButton">▶️ Watch How to Play</a>
@@ -7949,6 +7950,8 @@ if(shelf!==null){
     if(rank===0){portrait.src='joey-unplayed.jpg';label.textContent='Not Played Yet';}
     else if(rank===null){portrait.src='joey-neutral.jpg';label.textContent='Ranking Not Assigned';}
     else{portrait.src=rank>7?'joey-excited.jpg':rank<4.5?'joey-disgusted.jpg':'joey-neutral.jpg';label.textContent='Joey’s Ranking: '+rank;}
+    const shelfBadge=document.getElementById('gameShelf');
+    if(g.shelf!==null && g.shelf!==undefined && String(g.shelf).trim()!==''){shelfBadge.textContent='Return to Shelf '+String(g.shelf).trim();shelfBadge.hidden=false;}
     const stats=document.getElementById('statsButton');
     stats.href='https://app.bgstatsapp.com/addPlay.html?gameId='+encodeURIComponent(gid);
     const video=document.getElementById('videoButton');
