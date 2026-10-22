@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Joey's Board Game Night</title>
-<style>
-[hidden]{display:none!important}*{box-sizing:border-box}body{font-family:Arial,sans-serif;background:#012169;color:white;text-align:center;margin:0;padding:28px 16px}main{max-width:460px;margin:auto}h1{color:#ff9900;font-size:30px}.portrait{width:210px;height:210px;object-fit:cover;border-radius:50%;border:6px solid #ff9900;display:block;margin:18px auto 8px}.ranking{color:#ffcc76;font-weight:bold;font-size:22px;margin:8px 0 22px}.button{display:block;padding:18px 12px;margin:15px auto;max-width:350px;background:#ff8800;color:#111;font-size:19px;font-weight:bold;text-decoration:none;border-radius:12px}.button:hover{background:#ffbb55}.details{max-width:350px;margin:18px auto;text-align:left;background:#00194f;padding:16px;border-radius:12px;line-height:1.9}.details div{border-bottom:1px solid #244b91}.details div:last-child{border:0}.details .difficulty-row{background:#173e77;color:#ffdc80;border-left:4px solid #ffb02e;border-radius:6px;padding:3px 9px;margin:5px -9px}.shelf-list{margin:20px auto;max-width:350px}.shelf-list .button{margin:10px auto;text-align:left;font-size:17px}.expansions{margin:26px auto}.expansions a{color:#ffcc76}#error{color:#ffcc76}
-</style></head><body><main>
-<h1 id="gameTitle">Board Game Night</h1>
-<section id="shelfView" hidden><h2 id="shelfHeading"></h2><p>Select a game on this shelf:</p><div class="shelf-list" id="shelfList"></div></section><div id="gameView"><img class="portrait" id="joeyPicture" src="joey-neutral.jpg" alt="Cartoon Joey">
-<div class="ranking" id="rankingLabel">Joey's Ranking</div>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Joey's Board Game Night</title><style>*{box-sizing:border-box}[hidden]{display:none!important}body{font-family:Arial,sans-serif;background:#012169;color:#fff;text-align:center;margin:0;padding:28px 16px}main{max-width:490px;margin:auto}h1{color:#ff9900;font-size:30px}.button{display:block;padding:17px 12px;margin:13px auto;max-width:390px;background:#ff8800;color:#111;font-size:18px;font-weight:bold;text-decoration:none;border:0;border-radius:12px;cursor:pointer}.button:hover,.button:focus{background:#ffbb55}.portrait{width:210px;height:210px;object-fit:cover;border-radius:50%;border:6px solid #ff9900;display:block;margin:18px auto 8px}.ranking{color:#ffcc76;font-weight:bold;font-size:22px;margin:8px 0 22px}.details{max-width:390px;margin:18px auto;text-align:left;background:#00194f;padding:16px;border-radius:12px;line-height:1.9}.details div{border-bottom:1px solid #244b91}.details div:last-child{border:0}.details .difficulty-row{background:#173e77;color:#ffdc80;border-left:4px solid #ffb02e;border-radius:6px;padding:3px 9px;margin:5px -9px}.expansions{margin:26px auto}.expansions h2{color:#ffcc76}.expansions a{color:#ffcc76}.expansions p{line-height:1.6}</style></head><body><main>
+<h1 id="pageTitle">Board Game Night</h1>
+<section id="shelfView" hidden><p>Choose a game from this shelf:</p><div id="shelfList"></div></section>
+<section id="gameView" hidden>
+<img class="portrait" id="joeyPicture" src="joey-neutral.jpg" alt="Cartoon Joey">
+<div class="ranking" id="rankingLabel"></div>
 <p>What would you like to do?</p>
 <a class="button" id="statsButton">🎲 Log a Play in BG Stats</a>
 <a class="button" id="videoButton">▶️ Watch How to Play</a>
-<section id="gameDetails" class="details" hidden></section>
+<section class="details" id="gameDetails" hidden></section>
 <section class="expansions" id="expansionSection" hidden><h2>Expansions I Own</h2><div id="expansionList"></div></section>
-<p id="error" hidden>Check the game ID in your NFC link.</p></div>
+</section>
+<p id="error" hidden></p>
 </main><script>
-// Edit the games list below or regenerate it from your Excel spreadsheet.
 const games = {
   "277659": {
     "name": "Final Girl",
@@ -233,12 +233,7 @@ const games = {
     "shelf": 2,
     "maxPlayers": 4,
     "year": 2017,
-    "expansions": [
-      {
-        "name": "Anachrony: Classic Expansion Pack (on Shelf 2)",
-        "id": "297528"
-      }
-    ]
+    "expansions": []
   },
   "311193": {
     "name": "Anno 1800: The Board Game",
@@ -359,12 +354,7 @@ const games = {
     "shelf": 3,
     "maxPlayers": 4,
     "year": 2017,
-    "expansions": [
-      {
-        "name": "BÃ¤renpark: The Bad News Bears",
-        "id": "264238"
-      }
-    ]
+    "expansions": []
   },
   "181236": {
     "name": "Bastion",
@@ -716,12 +706,7 @@ const games = {
     "shelf": 5,
     "maxPlayers": 4,
     "year": 2017,
-    "expansions": [
-      {
-        "name": "Dice Forge: Rebellion",
-        "id": "258003"
-      }
-    ]
+    "expansions": []
   },
   "275785": {
     "name": "Die Hard: The Nakatomi Heist Board Game",
@@ -842,12 +827,7 @@ const games = {
     "shelf": 25,
     "maxPlayers": 4,
     "year": 2019,
-    "expansions": [
-      {
-        "name": "Edge of Darkness: Sands of Dunestar",
-        "id": "249499"
-      }
-    ]
+    "expansions": []
   },
   "387201": {
     "name": "Emerge",
@@ -882,8 +862,12 @@ const games = {
     "year": 2022,
     "expansions": [
       {
-        "name": "Endless Winter: Cave Paintings -323058, Endless Winter: Rivers & Rafts-323056",
-        "id": null
+        "name": "Endless Winter: Cave Paintings",
+        "id": "323058"
+      },
+      {
+        "name": "Endless Winter: Rivers & Rafts",
+        "id": "323056"
       }
     ]
   },
@@ -931,8 +915,24 @@ const games = {
     "year": 2018,
     "expansions": [
       {
-        "name": "Everdell: Extra! Extra! -297972, Everdell: Spirecrest-289056,Everdell: Pearlbrook-259996,Everdell: Newleaf-332390,Everdell: Mistwood-332397,Everdell: Legends-297972,",
-        "id": null
+        "name": "Everdell: Legends",
+        "id": "297972"
+      },
+      {
+        "name": "Everdell: Mistwood",
+        "id": "332397"
+      },
+      {
+        "name": "Everdell: Newleaf",
+        "id": "332390"
+      },
+      {
+        "name": "Everdell: Pearlbrook",
+        "id": "259996"
+      },
+      {
+        "name": "Everdell: Spirecrest",
+        "id": "289056"
       }
     ]
   },
@@ -991,8 +991,16 @@ const games = {
     "year": 2018,
     "expansions": [
       {
-        "name": "Fireball Island: The Curse of Vul-Kar â€“ Wreck of the Crimson Cutlass-249792, Fireball Island: The Curse of Vul-Kar â€“ Spider Springs-274536, Fireball Island: The Curse of Vul-Kar â€“ Crouching Tiger, Hidden Bees!-249326",
-        "id": null
+        "name": "Fireball Island: The Curse of Vul-Kar – Spider Springs",
+        "id": "274536"
+      },
+      {
+        "name": "Fireball Island: The Curse of Vul-Kar – Wreck of the Crimson Cutlass",
+        "id": "249792"
+      },
+      {
+        "name": "Fireball Island: The Curse of Vul-Kar – Crouching Tiger, Hidden Bees!",
+        "id": "249326"
       }
     ]
   },
@@ -1095,8 +1103,12 @@ const games = {
     "year": 2025,
     "expansions": [
       {
-        "name": "Galactic Cruise: Accommodations-414976, Galactic Cruise: Advancements-414974",
-        "id": null
+        "name": "Galactic Cruise: Accommodations",
+        "id": "414976"
+      },
+      {
+        "name": "Galactic Cruise: Advancements",
+        "id": "414974"
       }
     ]
   },
@@ -1320,8 +1332,12 @@ const games = {
     "year": 2016,
     "expansions": [
       {
-        "name": "Harry Potter: Hogwarts Battle â€“ Defence Against the Dark Arts - 254192, Harry Potter: Hogwarts Battle â€“ The Monster Box of Monsters Expansion -223494",
-        "id": null
+        "name": "Harry Potter: Hogwarts Battle – Defence Against the Dark Arts",
+        "id": "254192"
+      },
+      {
+        "name": "Harry Potter: Hogwarts Battle – The Monster Box of Monsters Expansion",
+        "id": "223494"
       }
     ]
   },
@@ -1347,8 +1363,8 @@ const games = {
     "year": 2018,
     "expansions": [
       {
-        "name": "Heroes of Land, Air & Sea: Nomads Mini-Expansion-248273",
-        "id": null
+        "name": "Air & Sea: Nomads Mini-Expansion",
+        "id": "248273"
       }
     ]
   },
@@ -1606,7 +1622,7 @@ const games = {
     "expansions": []
   },
   "429649": {
-    "name": "The Lord of the Rings: The Fellowship of the Ring â€“ Trick-Taking Game: Gifts of Galadriel",
+    "name": "The Lord of the Rings: The Fellowship of the Ring – Trick-Taking Game: Gifts of Galadriel",
     "video": null,
     "ranking": 0,
     "difficulty": 2,
@@ -1617,7 +1633,7 @@ const games = {
     "expansions": []
   },
   "448271": {
-    "name": "The Lord of the Rings: The Two Towers â€“ Trick-Taking Game",
+    "name": "The Lord of the Rings: The Two Towers – Trick-Taking Game",
     "video": null,
     "ranking": 0,
     "difficulty": 2.2703,
@@ -1751,7 +1767,7 @@ const games = {
   "295486": {
     "name": "My City",
     "video": null,
-    "ranking": 0,
+    "ranking": 6,
     "difficulty": 1.9855,
     "tutorialMinutes": null,
     "shelf": null,
@@ -1850,7 +1866,7 @@ const games = {
   "161936": {
     "name": "Pandemic Legacy: Season 1",
     "video": null,
-    "ranking": 0,
+    "ranking": 10,
     "difficulty": 2.8284,
     "tutorialMinutes": null,
     "shelf": null,
@@ -1971,7 +1987,7 @@ const games = {
   "180974": {
     "name": "Potion Explosion",
     "video": null,
-    "ranking": 0,
+    "ranking": 8.5,
     "difficulty": 1.7768,
     "tutorialMinutes": null,
     "shelf": null,
@@ -2554,7 +2570,7 @@ const games = {
   "162886": {
     "name": "Spirit Island",
     "video": null,
-    "ranking": 0,
+    "ranking": 9,
     "difficulty": 4.0758,
     "tutorialMinutes": null,
     "shelf": null,
@@ -2607,7 +2623,7 @@ const games = {
     "expansions": []
   },
   "347102": {
-    "name": "Star Wars: Outer Rim â€“ Unfinished Business",
+    "name": "Star Wars: Outer Rim – Unfinished Business",
     "video": null,
     "ranking": 0,
     "difficulty": 2.7917,
@@ -2837,8 +2853,8 @@ const games = {
     "year": 2017,
     "expansions": [
       {
-        "name": "Too Many Bones: Undertow-235802",
-        "id": null
+        "name": "Too Many Bones: Undertow",
+        "id": "235802"
       }
     ]
   },
@@ -3203,12 +3219,7 @@ const games = {
     "shelf": 14,
     "maxPlayers": 5,
     "year": 2024,
-    "expansions": [
-      {
-        "name": "Andromeda's Edge: Escalation (in box)",
-        "id": "379786"
-      }
-    ]
+    "expansions": []
   },
   "170216": {
     "name": "Blood Rage",
@@ -3237,8 +3248,12 @@ const games = {
     "year": 2015,
     "expansions": [
       {
-        "name": "Champions of Midgard: Valhalla - 219788, \nChampions of Midgard: The Dark Mountains - 219787",
-        "id": null
+        "name": "Champions of Midgard: The Dark Mountains",
+        "id": "219787"
+      },
+      {
+        "name": "Champions of Midgard: Valhalla",
+        "id": "219788"
       }
     ]
   },
@@ -3330,17 +3345,6 @@ const games = {
     "year": 2016,
     "expansions": []
   },
-  "174506": {
-    "name": "Blood Rage: 5th Player Expansion",
-    "video": null,
-    "ranking": 0,
-    "difficulty": 2.7234,
-    "tutorialMinutes": null,
-    "shelf": null,
-    "maxPlayers": 5,
-    "year": 2015,
-    "expansions": []
-  },
   "413246": {
     "name": "Bomb Busters",
     "video": null,
@@ -3385,19 +3389,8 @@ const games = {
     "year": 2015,
     "expansions": []
   },
-  "219787": {
-    "name": "Champions of Midgard: The Dark Mountains",
-    "video": null,
-    "ranking": 0,
-    "difficulty": 2.3611,
-    "tutorialMinutes": null,
-    "shelf": null,
-    "maxPlayers": 5,
-    "year": 2017,
-    "expansions": []
-  },
   "314014": {
-    "name": "Civilization: A New Dawn â€“ Terra Incognita",
+    "name": "Civilization: A New Dawn – Terra Incognita",
     "video": null,
     "ranking": 0,
     "difficulty": 3.6522,
@@ -3793,7 +3786,7 @@ const games = {
     "expansions": []
   },
   "304297": {
-    "name": "Harry Potter: Hogwarts Battle â€“ The Charms and Potions Expansion",
+    "name": "Harry Potter: Hogwarts Battle – The Charms and Potions Expansion",
     "video": null,
     "ranking": 0,
     "difficulty": 2.5909,
@@ -3881,7 +3874,7 @@ const games = {
     "expansions": []
   },
   "316630": {
-    "name": "The Lord of the Rings: Journeys in Middle-earth â€“ Dwellers in Darkness Figure Pack",
+    "name": "The Lord of the Rings: Journeys in Middle-earth – Dwellers in Darkness Figure Pack",
     "video": null,
     "ranking": 0,
     "difficulty": 2.9333,
@@ -3892,7 +3885,7 @@ const games = {
     "expansions": []
   },
   "367925": {
-    "name": "The Lord of the Rings: Journeys in Middle-Earth â€“ Scourges of the Wastes Figure Pack",
+    "name": "The Lord of the Rings: Journeys in Middle-Earth – Scourges of the Wastes Figure Pack",
     "video": null,
     "ranking": 0,
     "difficulty": 2.8571,
@@ -3903,7 +3896,7 @@ const games = {
     "expansions": []
   },
   "299597": {
-    "name": "The Lord of the Rings: Journeys in Middle-earth â€“ Shadowed Paths Expansion",
+    "name": "The Lord of the Rings: Journeys in Middle-earth – Shadowed Paths Expansion",
     "video": null,
     "ranking": 0,
     "difficulty": 2.9688,
@@ -3914,7 +3907,7 @@ const games = {
     "expansions": []
   },
   "342189": {
-    "name": "The Lord of the Rings: Journeys in Middle-Earth â€“ Spreading War Expansion",
+    "name": "The Lord of the Rings: Journeys in Middle-Earth – Spreading War Expansion",
     "video": null,
     "ranking": 0,
     "difficulty": 2.75,
@@ -3925,7 +3918,7 @@ const games = {
     "expansions": []
   },
   "277721": {
-    "name": "The Lord of the Rings: Journeys in Middle-earth â€“ Villains of Eriador Figure Pack",
+    "name": "The Lord of the Rings: Journeys in Middle-earth – Villains of Eriador Figure Pack",
     "video": null,
     "ranking": 0,
     "difficulty": 2.68,
@@ -3977,7 +3970,28 @@ const games = {
     "shelf": null,
     "maxPlayers": 5,
     "year": 2011,
-    "expansions": []
+    "expansions": [
+      {
+        "name": "Mansions of Madness: Second Edition – Beyond the Threshold: Expansion",
+        "id": "210674"
+      },
+      {
+        "name": "Mansions of Madness: Second Edition – Horrific Journeys: Expansion",
+        "id": "255823"
+      },
+      {
+        "name": "Mansions of Madness: Second Edition – Path of the Serpent: Expansion",
+        "id": "283094"
+      },
+      {
+        "name": "Mansions of Madness: Second Edition – Sanctum of Twilight: Expansion",
+        "id": "241533"
+      },
+      {
+        "name": "Mansions of Madness: Second Edition – Streets of Arkham: Expansion",
+        "id": "229987"
+      }
+    ]
   },
   "205059": {
     "name": "Mansions of Madness: Second Edition",
@@ -3990,41 +4004,8 @@ const games = {
     "year": 2016,
     "expansions": []
   },
-  "210674": {
-    "name": "Mansions of Madness: Second Edition â€“ Beyond the Threshold: Expansion",
-    "video": null,
-    "ranking": 10,
-    "difficulty": 2.7,
-    "tutorialMinutes": null,
-    "shelf": null,
-    "maxPlayers": 5,
-    "year": 2017,
-    "expansions": []
-  },
-  "255823": {
-    "name": "Mansions of Madness: Second Edition â€“ Horrific Journeys: Expansion",
-    "video": null,
-    "ranking": 0,
-    "difficulty": 2.8571,
-    "tutorialMinutes": null,
-    "shelf": null,
-    "maxPlayers": 5,
-    "year": 2018,
-    "expansions": []
-  },
-  "283094": {
-    "name": "Mansions of Madness: Second Edition â€“ Path of the Serpent: Expansion",
-    "video": null,
-    "ranking": 0,
-    "difficulty": 3,
-    "tutorialMinutes": null,
-    "shelf": null,
-    "maxPlayers": 5,
-    "year": 2019,
-    "expansions": []
-  },
   "206547": {
-    "name": "Mansions of Madness: Second Edition â€“ Recurring Nightmares: Figure and Tile Collection",
+    "name": "Mansions of Madness: Second Edition – Recurring Nightmares: Figure and Tile Collection",
     "video": null,
     "ranking": 0,
     "difficulty": 2.6667,
@@ -4034,30 +4015,8 @@ const games = {
     "year": 2016,
     "expansions": []
   },
-  "241533": {
-    "name": "Mansions of Madness: Second Edition â€“ Sanctum of Twilight: Expansion",
-    "video": null,
-    "ranking": 0,
-    "difficulty": 2.619,
-    "tutorialMinutes": null,
-    "shelf": null,
-    "maxPlayers": 5,
-    "year": 2018,
-    "expansions": []
-  },
-  "229987": {
-    "name": "Mansions of Madness: Second Edition â€“ Streets of Arkham: Expansion",
-    "video": null,
-    "ranking": 0,
-    "difficulty": 2.7097,
-    "tutorialMinutes": null,
-    "shelf": null,
-    "maxPlayers": 5,
-    "year": 2017,
-    "expansions": []
-  },
   "206548": {
-    "name": "Mansions of Madness: Second Edition â€“ Suppressed Memories: Figure and Tile Collection",
+    "name": "Mansions of Madness: Second Edition – Suppressed Memories: Figure and Tile Collection",
     "video": null,
     "ranking": 0,
     "difficulty": 2.6,
@@ -4112,7 +4071,7 @@ const games = {
     "expansions": []
   },
   "298267": {
-    "name": "Mystery House: Adventures in a Box â€“ Back to Tombstone",
+    "name": "Mystery House: Adventures in a Box – Back to Tombstone",
     "video": null,
     "ranking": 0,
     "difficulty": 2,
@@ -4123,7 +4082,7 @@ const games = {
     "expansions": []
   },
   "338829": {
-    "name": "Mystery House: Adventures in a Box â€“ The Lost Ship",
+    "name": "Mystery House: Adventures in a Box – The Lost Ship",
     "video": null,
     "ranking": 0,
     "difficulty": 2,
@@ -4277,7 +4236,7 @@ const games = {
     "expansions": []
   },
   "278166": {
-    "name": "Plague Inc.: The Board Game â€“ Armageddon",
+    "name": "Plague Inc.: The Board Game – Armageddon",
     "video": null,
     "ranking": 0,
     "difficulty": 2.4545,
@@ -4444,7 +4403,7 @@ const games = {
   "40692": {
     "name": "Small World",
     "video": null,
-    "ranking": 7,
+    "ranking": 7.5,
     "difficulty": 2.3455,
     "tutorialMinutes": null,
     "shelf": null,
@@ -4857,29 +4816,16 @@ const games = {
     "shelf": null,
     "maxPlayers": 5,
     "year": 2019,
-    "expansions": []
-  },
-  "290448": {
-    "name": "Wingspan: European Expansion",
-    "video": null,
-    "ranking": 0,
-    "difficulty": 2.4328,
-    "tutorialMinutes": null,
-    "shelf": null,
-    "maxPlayers": 5,
-    "year": 2019,
-    "expansions": []
-  },
-  "300580": {
-    "name": "Wingspan: Oceania Expansion",
-    "video": null,
-    "ranking": 0,
-    "difficulty": 2.67,
-    "tutorialMinutes": null,
-    "shelf": null,
-    "maxPlayers": 5,
-    "year": 2020,
-    "expansions": []
+    "expansions": [
+      {
+        "name": "Wingspan: European Expansion",
+        "id": "290448"
+      },
+      {
+        "name": "Wingspan: Oceania Expansion",
+        "id": "300580"
+      }
+    ]
   },
   "368058": {
     "name": "The Wolves",
@@ -4967,12 +4913,7 @@ const games = {
     "shelf": 24,
     "maxPlayers": 6,
     "year": 2021,
-    "expansions": [
-      {
-        "name": "Cascadia: Landmarks",
-        "id": "385318"
-      }
-    ]
+    "expansions": []
   },
   "316554": {
     "name": "Dune: Imperium",
@@ -4983,12 +4924,7 @@ const games = {
     "shelf": 24,
     "maxPlayers": 6,
     "year": 2020,
-    "expansions": [
-      {
-        "name": "Dune: Imperium â€“ Rise of Ix",
-        "id": "342031"
-      }
-    ]
+    "expansions": []
   },
   "208766": {
     "name": "13 Clues",
@@ -4999,12 +4935,7 @@ const games = {
     "shelf": 23,
     "maxPlayers": 6,
     "year": 2016,
-    "expansions": [
-      {
-        "name": "7 Wonders: Babel",
-        "id": "154638"
-      }
-    ]
+    "expansions": []
   },
   "378356": {
     "name": "The A.R.T. Project",
@@ -5314,13 +5245,25 @@ const games = {
     "year": 2018,
     "expansions": [
       {
-        "name": "Disney Villainous: Wicked to the Core-271518 , Disney Villainous: Perfectly Wretched-299047,Disney Villainous: Despicable Plots -331050,Disney Villainous: Evil Comes Prepared-284760",
-        "id": null
+        "name": "Disney Villainous: Despicable Plots",
+        "id": "331050"
+      },
+      {
+        "name": "Disney Villainous: Evil Comes Prepared",
+        "id": "284760"
+      },
+      {
+        "name": "Disney Villainous: Perfectly Wretched",
+        "id": "299047"
+      },
+      {
+        "name": "Disney Villainous: Wicked to the Core",
+        "id": "271518"
       }
     ]
   },
   "309129": {
-    "name": "Disney: The Haunted Mansion â€“ Call of the Spirits Game",
+    "name": "Disney: The Haunted Mansion – Call of the Spirits Game",
     "video": null,
     "ranking": 0,
     "difficulty": 1.9231,
@@ -5397,7 +5340,7 @@ const games = {
     "expansions": []
   },
   "397598": {
-    "name": "Dune: Imperium â€“ Uprising",
+    "name": "Dune: Imperium – Uprising",
     "video": null,
     "ranking": 0,
     "difficulty": 3.5288,
@@ -5526,18 +5469,12 @@ const games = {
     "shelf": null,
     "maxPlayers": 6,
     "year": 2023,
-    "expansions": []
-  },
-  "400127": {
-    "name": "Fit To Print: Game Breaking News Mini-Expansion",
-    "video": null,
-    "ranking": 9,
-    "difficulty": 2,
-    "tutorialMinutes": null,
-    "shelf": null,
-    "maxPlayers": 6,
-    "year": 2023,
-    "expansions": []
+    "expansions": [
+      {
+        "name": "Fit To Print: Game Breaking News Mini-Expansion",
+        "id": "400127"
+      }
+    ]
   },
   "23964": {
     "name": "The Game of Life (40th Anniversary Edition)",
@@ -7126,7 +7063,7 @@ const games = {
   "166384": {
     "name": "Spyfall",
     "video": null,
-    "ranking": 0,
+    "ranking": 6,
     "difficulty": 1.2298,
     "tutorialMinutes": null,
     "shelf": null,
@@ -7190,7 +7127,7 @@ const games = {
     "expansions": []
   },
   "315895": {
-    "name": "Twilight Imperium: Fourth Edition â€“ Prophecy of Kings",
+    "name": "Twilight Imperium: Fourth Edition – Prophecy of Kings",
     "video": null,
     "ranking": 0,
     "difficulty": 4.4344,
@@ -7379,7 +7316,7 @@ const games = {
   "147949": {
     "name": "One Night Ultimate Werewolf",
     "video": null,
-    "ranking": 0,
+    "ranking": 8,
     "difficulty": 1.381,
     "tutorialMinutes": null,
     "shelf": null,
@@ -7982,78 +7919,62 @@ const games = {
     "expansions": []
   }
 };
-const query = new URLSearchParams(location.search);
-const shelfRequested = query.get('shelf');
-const gameId = query.get('game') || Object.keys(games)[0];
-if (shelfRequested !== null) {
-  document.getElementById('gameView').hidden = true;
-  document.getElementById('gameTitle').hidden = true;
-  document.getElementById('shelfView').hidden = false;
-  const shelfName = shelfRequested.trim();
-  document.getElementById('shelfHeading').textContent = 'Shelf ' + shelfName;
-  document.title = 'Shelf ' + shelfName + ' | Joey’s Board Game Night';
-  const matches = Object.entries(games).filter(([id, g]) =>
-    g.shelf !== null && g.shelf !== undefined &&
-    String(g.shelf).trim().toLowerCase() === shelfName.toLowerCase()
-  ).sort((a,b) => a[1].name.localeCompare(b[1].name, undefined, {sensitivity:'base'}));
-  const list = document.getElementById('shelfList');
-  if (!matches.length) {
-    const message = document.createElement('p');
-    message.textContent = 'No games are assigned to this shelf in the spreadsheet.';
-    list.appendChild(message);
-  }
-  for (const [id,g] of matches) {
-    const a = document.createElement('a');
-    a.className = 'button';
-    a.href = '?game=' + encodeURIComponent(id);
-    a.textContent = g.name;
+const q=new URLSearchParams(window.location.search);
+const shelf=q.get('shelf');
+const id=q.get('game');
+const title=document.getElementById('pageTitle');
+const error=document.getElementById('error');
+if(shelf!==null){
+  document.getElementById('shelfView').hidden=false;
+  title.textContent='Shelf '+shelf;
+  document.title='Shelf '+shelf+' | Joey’s Board Game Night';
+  const list=document.getElementById('shelfList');
+  const matches=Object.entries(games).filter(([id,g])=>g.shelf!==null&&g.shelf!==undefined&&String(g.shelf).trim().toLowerCase()===shelf.trim().toLowerCase()).sort((a,b)=>a[1].name.localeCompare(b[1].name,undefined,{sensitivity:'base'}));
+  if(!matches.length){list.textContent='No games assigned to this shelf.';}
+  for(const [gid,g] of matches){
+    const a=document.createElement('a');
+    a.className='button';a.href=window.location.pathname+'?game='+encodeURIComponent(gid);a.textContent=g.name;
     list.appendChild(a);
   }
-}
-const gameId = new URLSearchParams(location.search).get('game') || Object.keys(games)[0];
-const game = games[gameId];
-const title = document.getElementById('gameTitle');
-const picture = document.getElementById('joeyPicture');
-const label = document.getElementById('rankingLabel');
-const stats = document.getElementById('statsButton');
-const video = document.getElementById('videoButton');
-if (shelfRequested !== null) {
-  // Shelf listing is displayed above; skip individual game rendering.
-} else if (!game) {
-  title.textContent='Game Not Found';
-  picture.hidden=true;label.hidden=true;stats.hidden=true;video.hidden=true;
-  document.getElementById('error').hidden=false;
-} else {
-  title.textContent=game.name;
-  document.title=game.name+' | Joey’s Board Game Night';
-  stats.href='https://app.bgstatsapp.com/addPlay.html?gameId='+encodeURIComponent(gameId);
-  if(game.video){video.href=game.video;video.target='_blank';video.rel='noopener noreferrer';}
-  else {video.textContent='▶️ Tutorial Coming Soon';video.removeAttribute('href');}
-  const rank=game.ranking;
-  if(rank===0){label.textContent='Not Played Yet';picture.src='joey-unplayed.jpg';}
-  else if(rank==null){label.textContent='Ranking Not Assigned';picture.src='joey-neutral.jpg';}
-  else {
-    label.textContent='Joey’s Ranking: '+rank;
-    picture.src=rank>7?'joey-excited.jpg':rank<4.5?'joey-disgusted.jpg':'joey-neutral.jpg';
-  }
-  const details=document.getElementById('gameDetails');
-  const fields=[['Shelf location',game.shelf],['Maximum players',game.maxPlayers],['Learning Difficulty',game.difficulty],['Tutorial length (minutes)',game.tutorialMinutes],['Published',game.year]];
-  for(const [key,value] of fields){
-    if(value!==null&&value!==undefined&&value!==''){
-      const line=document.createElement('div');const strong=document.createElement('strong');strong.textContent=key+': ';
-      if(key==='Learning Difficulty')line.classList.add('difficulty-row');
-      line.append(strong,document.createTextNode(key==='Learning Difficulty' ? Number(value).toFixed(2)+' out of 5' : String(value)));details.appendChild(line);
+}else{
+  const gid=id||Object.keys(games)[0];
+  const g=games[gid];
+  if(!g){title.textContent='Game Not Found';error.textContent='This game ID is not in the current Excel collection.';error.hidden=false;}
+  else{
+    document.getElementById('gameView').hidden=false;
+    title.textContent=g.name;document.title=g.name+' | Joey’s Board Game Night';
+    const rank=g.ranking;
+    const portrait=document.getElementById('joeyPicture');
+    const label=document.getElementById('rankingLabel');
+    if(rank===0){portrait.src='joey-unplayed.jpg';label.textContent='Not Played Yet';}
+    else if(rank===null){portrait.src='joey-neutral.jpg';label.textContent='Ranking Not Assigned';}
+    else{portrait.src=rank>7?'joey-excited.jpg':rank<4.5?'joey-disgusted.jpg':'joey-neutral.jpg';label.textContent='Joey’s Ranking: '+rank;}
+    const stats=document.getElementById('statsButton');
+    stats.href='https://app.bgstatsapp.com/addPlay.html?gameId='+encodeURIComponent(gid);
+    const video=document.getElementById('videoButton');
+    if(g.video){video.href=g.video;video.target='_blank';video.rel='noopener noreferrer';}
+    else{video.textContent='▶️ Tutorial Coming Soon';video.hidden=true;}
+    const details=document.getElementById('gameDetails');
+    const fields=[['Shelf location',g.shelf],['Maximum players',g.maxPlayers],['Learning Difficulty',g.difficulty],['Tutorial length (minutes)',g.tutorialMinutes],['Published',g.year]];
+    for(const [key,v] of fields){
+      if(v===null||v===undefined||v==='')continue;
+      const line=document.createElement('div');
+      if(key==='Learning Difficulty')line.className='difficulty-row';
+      const bold=document.createElement('strong');bold.textContent=key+': ';
+      line.appendChild(bold);
+      line.appendChild(document.createTextNode(key==='Learning Difficulty'?Number(v).toFixed(2)+' out of 5':String(v)));
+      details.appendChild(line);
     }
-  }
-  if(details.children.length){details.hidden=false;}
-  if(Array.isArray(game.expansions)&&game.expansions.length){
-    const section=document.getElementById('expansionSection');section.hidden=false;
-    const list=document.getElementById('expansionList');
-    for(const expansion of game.expansions){
-      const p=document.createElement('p');
-      if(expansion.id){const a=document.createElement('a');a.href='https://boardgamegeek.com/boardgame/'+encodeURIComponent(expansion.id);a.textContent=expansion.name;a.target='_blank';a.rel='noopener noreferrer';p.appendChild(a);}
-      else{p.textContent=expansion.name;}
-      list.appendChild(p);
+    if(details.children.length)details.hidden=false;
+    if(g.expansions.length){
+      document.getElementById('expansionSection').hidden=false;
+      const list=document.getElementById('expansionList');
+      for(const e of g.expansions){
+        const p=document.createElement('p');
+        if(e.id){const a=document.createElement('a');a.href='https://boardgamegeek.com/boardgame/'+encodeURIComponent(e.id);a.target='_blank';a.rel='noopener noreferrer';a.textContent=e.name;p.appendChild(a);}
+        else p.textContent=e.name;
+        list.appendChild(p);
+      }
     }
   }
 }
