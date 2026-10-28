@@ -19,6 +19,7 @@
 const BOARDGAME_TV_HTTPS_BASE = 'https://desktop-c2jrgrc.tail932da5.ts.net';
 
 const BOARDGAME_TV_PLAY_PATH = '/play'; // Must match your receiver.py route.
+const BOARDGAME_TV_RULES_PATH = '/rules'; // Opens a chat on the Game Room computer.
 
 const games = {"277659":{"name":"Final Girl","video":"https://youtu.be/pQ3IiUF4txE?si=o3CKO70kekBjEh7e","tutorialMinutes":17,"shelf":"1","ranking":2,"difficulty":2.7624,"bggRank":94,"minPlayers":1,"maxPlayers":1,"playMinutes":60,"bestPlayers":1,"expansions":[]},
 
@@ -57,6 +58,7 @@ const games = {"277659":{"name":"Final Girl","video":"https://youtu.be/pQ3IiUF4t
 "371947":{"name":"3 Ring Circus","video":"https://youtu.be/VvtE9fCbGS8?si=F14640FFDc0QhRap","tutorialMinutes":17,"shelf":"2","ranking":7,"difficulty":2.7734,"bggRank":1616,"minPlayers":1,"maxPlayers":4,"playMinutes":75,"bestPlayers":3,"expansions":[]},
 
 "217949":{"name":"A Column of Fire","video":"https://youtu.be/FFFz7c1rkfg?si=mbrf9mMw5YtrRitf","tutorialMinutes":22,"shelf":"4","ranking":0,"difficulty":2.375,"bggRank":4874,"minPlayers":2,"maxPlayers":4,"playMinutes":90,"bestPlayers":4,"expansions":[]},
+
 
 "177736":{"name":"A Feast for Odin","video":"https://youtu.be/luLP3sgg5qY?si=nGS_ofM0HsQLLsvw","tutorialMinutes":20,"shelf":"6","ranking":7,"difficulty":3.8683,"bggRank":26,"minPlayers":1,"maxPlayers":4,"playMinutes":120,"bestPlayers":3,"expansions":[{"name":"A Feast for Odin: The Norwegians","id":"216788"}]},
 
@@ -118,6 +120,7 @@ const games = {"277659":{"name":"Final Girl","video":"https://youtu.be/pQ3IiUF4t
 
 "224517":{"name":"Brass: Birmingham","video":"https://youtu.be/Lzxf4tfq9as?si=f7HyPz6hJtSi79GO","tutorialMinutes":33,"shelf":"3","ranking":10,"difficulty":3.8603,"bggRank":1,"minPlayers":2,"maxPlayers":4,"playMinutes":120,"bestPlayers":"3,4","expansions":[]},
 
+
 "184921":{"name":"Bunny Kingdom","video":"https://youtu.be/_ogPAox8KmU?si=_rroiiMg_4mK2ZWn","tutorialMinutes":4,"shelf":"2","ranking":6,"difficulty":2.3042,"bggRank":395,"minPlayers":2,"maxPlayers":4,"playMinutes":60,"bestPlayers":"3,4","expansions":[]},
 
 "238992":{"name":"Call to Adventure","video":"https://youtu.be/d-1qLs1Igbg?si=-WAcwzbT5ip5s5E-","tutorialMinutes":5,"shelf":"4","ranking":0,"difficulty":2.0058,"bggRank":1138,"minPlayers":1,"maxPlayers":4,"playMinutes":60,"bestPlayers":3,"expansions":[]},
@@ -177,6 +180,7 @@ const games = {"277659":{"name":"Final Girl","video":"https://youtu.be/pQ3IiUF4t
 "232219":{"name":"Dragon Castle","video":"https://youtu.be/8ITRAmkMo-0?si=gWeUhn0gl5oXzNU8","tutorialMinutes":12,"shelf":"5","ranking":7,"difficulty":1.9876,"bggRank":910,"minPlayers":1,"maxPlayers":4,"playMinutes":45,"bestPlayers":2,"expansions":[]},
 
 "45315":{"name":"Dungeon Lords","video":"https://youtu.be/P7qFLu7swaA?si=dGslrwa4nnxowO-O","tutorialMinutes":20,"shelf":"6","ranking":7,"difficulty":3.5748,"bggRank":453,"minPlayers":2,"maxPlayers":4,"playMinutes":90,"bestPlayers":4,"expansions":[]},
+
 
 "342900":{"name":"Earthborne Rangers","video":"https://youtu.be/xzqx50AZsgo?si=3FENKrVtPev3AeDu","tutorialMinutes":27,"shelf":"6","ranking":0,"difficulty":3.4864,"bggRank":443,"minPlayers":1,"maxPlayers":4,"playMinutes":240,"bestPlayers":2,"expansions":[]},
 
@@ -238,6 +242,7 @@ const games = {"277659":{"name":"Final Girl","video":"https://youtu.be/pQ3IiUF4t
 
 "384213":{"name":"Fromage","video":"https://youtu.be/Ly8OmDybdy0?si=WlmGcmmcMbb8Xu9s","tutorialMinutes":20,"shelf":"6","ranking":6,"difficulty":2.3717,"bggRank":366,"minPlayers":1,"maxPlayers":4,"playMinutes":45,"bestPlayers":4,"expansions":[]},
 
+
 "295770":{"name":"Frosthaven","video":"https://youtu.be/MLeXZqFeyKw?si=QxYq1lHjRkBe1yDN","tutorialMinutes":7,"shelf":"Top Shelf","ranking":0,"difficulty":4.4061,"bggRank":20,"minPlayers":1,"maxPlayers":4,"playMinutes":180,"bestPlayers":3,"expansions":[]},
 
 "220308":{"name":"Gaia Project","video":"https://youtu.be/XPMMLexERvs?si=PVpHaK02vWOrn0o4","tutorialMinutes":130,"shelf":"6","ranking":8.5,"difficulty":4.4031,"bggRank":13,"minPlayers":1,"maxPlayers":4,"playMinutes":150,"bestPlayers":"3,4","expansions":[]},
@@ -297,6 +302,7 @@ const games = {"277659":{"name":"Final Girl","video":"https://youtu.be/pQ3IiUF4t
 "260644":{"name":"Imagineers","video":"https://youtu.be/gzZV6_nNK_s?si=fNXRMPBXL4pX9IuC","tutorialMinutes":10,"shelf":"8","ranking":0,"difficulty":2.4286,"bggRank":13934,"minPlayers":2,"maxPlayers":4,"playMinutes":60,"bestPlayers":"3,4","expansions":[]},
 
 "191862":{"name":"Imhotep","video":"https://youtu.be/KIr7BeF5jL0?si=2xJn9EZvcRorrmtl","tutorialMinutes":13,"shelf":"8","ranking":0,"difficulty":2.0162,"bggRank":633,"minPlayers":2,"maxPlayers":4,"playMinutes":40,"bestPlayers":4,"expansions":[]},
+
 
 "270844":{"name":"Imperial Settlers: Empires of the North","video":"https://youtu.be/F6ZItLvQahk?si=_xE3lMUpkSkjh8Eg","tutorialMinutes":24,"shelf":"8","ranking":0,"difficulty":2.8113,"bggRank":612,"minPlayers":1,"maxPlayers":4,"playMinutes":90,"bestPlayers":2,"expansions":[]},
 
@@ -358,6 +364,7 @@ const games = {"277659":{"name":"Final Girl","video":"https://youtu.be/pQ3IiUF4t
 
 "15363":{"name":"Nexus Ops","video":"https://youtu.be/amr52GoyCKc?si=gSibwstsbeKjUtMl","tutorialMinutes":29,"shelf":"9","ranking":0,"difficulty":2.2325,"bggRank":708,"minPlayers":2,"maxPlayers":4,"playMinutes":90,"bestPlayers":4,"expansions":[]},
 
+
 "233676":{"name":"Noria","video":"https://youtu.be/vanmBeILgkc?si=VNzIxCF6Lbiqvlm5","tutorialMinutes":23,"shelf":"9","ranking":0,"difficulty":3.631,"bggRank":3719,"minPlayers":2,"maxPlayers":4,"playMinutes":120,"bestPlayers":"3,4","expansions":[]},
 
 "396790":{"name":"Nucleum","video":"https://youtu.be/MTfft-YmkRs?si=HiOWajE8RjinRzDE","tutorialMinutes":27,"shelf":"9","ranking":10,"difficulty":4.1948,"bggRank":129,"minPlayers":1,"maxPlayers":4,"playMinutes":150,"bestPlayers":3,"expansions":[{"name":"Nucleum: Australia","id":"408223"}]},
@@ -417,6 +424,7 @@ const games = {"277659":{"name":"Final Girl","video":"https://youtu.be/pQ3IiUF4t
 "365139":{"name":"Return to Dark Tower: Covenant","video":null,"tutorialMinutes":null,"shelf":null,"ranking":0,"difficulty":3,"bggRank":0,"minPlayers":1,"maxPlayers":4,"playMinutes":120,"bestPlayers":"2,4","expansions":[]},
 
 "332772":{"name":"Revive","video":"https://youtu.be/UM9wGJBUAmw?si=YNxyWXDsbog_2_xR","tutorialMinutes":33,"shelf":"10","ranking":0,"difficulty":3.4655,"bggRank":92,"minPlayers":1,"maxPlayers":4,"playMinutes":120,"bestPlayers":3,"expansions":[]},
+
 
 "192349":{"name":"Risky Adventure","video":"https://youtu.be/2tB1bdvC3-0?si=9PIT3QTa_R-4ki_u","tutorialMinutes":3,"shelf":"10","ranking":0,"difficulty":1.6667,"bggRank":23990,"minPlayers":2,"maxPlayers":4,"playMinutes":45,"bestPlayers":3,"expansions":[]},
 
@@ -478,6 +486,7 @@ const games = {"277659":{"name":"Final Girl","video":"https://youtu.be/pQ3IiUF4t
 
 "266179":{"name":"Space Gate Odyssey","video":"https://youtu.be/sROVjC5rv9o?si=nK-b9gzpFdeWXsN1","tutorialMinutes":24,"shelf":"12","ranking":0,"difficulty":2.7708,"bggRank":3609,"minPlayers":2,"maxPlayers":4,"playMinutes":90,"bestPlayers":4,"expansions":[]},
 
+
 "243358":{"name":"Space Park","video":"https://youtu.be/WMk2TqJFkio?si=y-PpDp2K5lUZxt0C","tutorialMinutes":7,"shelf":"Mixed","ranking":0,"difficulty":1.6667,"bggRank":2912,"minPlayers":1,"maxPlayers":4,"playMinutes":30,"bestPlayers":3,"expansions":[]},
 
 "162886":{"name":"Spirit Island","video":"https://youtu.be/hAXQfGHhPAA?si=jTYPIW0V5FA1aO16","tutorialMinutes":7,"shelf":"Top Shelf","ranking":9,"difficulty":4.0758,"bggRank":11,"minPlayers":1,"maxPlayers":4,"playMinutes":120,"bestPlayers":2,"expansions":[{"name":"Spirit Island: Branch & Claw","id":"193065"},{"name":"Spirit Island: Feather & Flame","id":"356510"},{"name":"Spirit Island: Jagged Earth","id":"262722"},{"name":"Spirit Island: Nature Incarnate","id":"365137"}]},
@@ -537,6 +546,7 @@ const games = {"277659":{"name":"Final Girl","video":"https://youtu.be/pQ3IiUF4t
 "429649":{"name":"The Lord of the Rings: The Fellowship of the Ring â€“ Trick-Taking Game: Gifts of Galadriel","video":"https://youtu.be/IOZfWGt3cNs?si=sESllqxn1Fvgg70s","tutorialMinutes":22,"shelf":"Mixed","ranking":0,"difficulty":2,"bggRank":0,"minPlayers":1,"maxPlayers":4,"playMinutes":20,"bestPlayers":4,"expansions":[]},
 
 "142197":{"name":"The Phantom Society","video":"https://youtu.be/RyrDk_y5A0o?si=GAmi6O5BdHD-TJFn","tutorialMinutes":21,"shelf":"9","ranking":0,"difficulty":1.4737,"bggRank":11975,"minPlayers":2,"maxPlayers":4,"playMinutes":20,"bestPlayers":4,"expansions":[]},
+
 
 "341166":{"name":"The Plum Island Horror","video":"https://youtu.be/JHkGi77B8x4?si=-Ag9Po2qMdrJ1D6p","tutorialMinutes":34,"shelf":"Top Shelf","ranking":0,"difficulty":3.2549,"bggRank":3165,"minPlayers":1,"maxPlayers":4,"playMinutes":180,"bestPlayers":"1,2","expansions":[]},
 
@@ -598,6 +608,7 @@ const games = {"277659":{"name":"Final Girl","video":"https://youtu.be/pQ3IiUF4t
 
 "269210":{"name":"Twice as Clever!","video":null,"tutorialMinutes":null,"shelf":null,"ranking":6.75,"difficulty":2.2714,"bggRank":479,"minPlayers":1,"maxPlayers":4,"playMinutes":30,"bestPlayers":2,"expansions":[]},
 
+
 "247763":{"name":"Underwater Cities","video":null,"tutorialMinutes":null,"shelf":null,"ranking":0,"difficulty":3.5921,"bggRank":54,"minPlayers":1,"maxPlayers":4,"playMinutes":150,"bestPlayers":2,"expansions":[]},
 
 "381297":{"name":"Unmatched Adventures: Tales to Amaze","video":null,"tutorialMinutes":null,"shelf":null,"ranking":0,"difficulty":2.3375,"bggRank":498,"minPlayers":1,"maxPlayers":4,"playMinutes":60,"bestPlayers":2,"expansions":[]},
@@ -657,6 +668,7 @@ const games = {"277659":{"name":"Final Girl","video":"https://youtu.be/pQ3IiUF4t
 "358661":{"name":"Andromeda's Edge","video":"https://youtu.be/_50vWz6ESmk?si=04pxA9gTYUz5veq9","tutorialMinutes":23,"shelf":"14","ranking":0,"difficulty":3.7407,"bggRank":162,"minPlayers":2,"maxPlayers":5,"playMinutes":160,"bestPlayers":3,"expansions":[{"name":"Andromeda's Edge: Escalation","id":"379786"}]},
 
 "379786":{"name":"Andromeda's Edge: Escalation","video":null,"tutorialMinutes":null,"shelf":null,"ranking":0,"difficulty":3.7647,"bggRank":0,"minPlayers":1,"maxPlayers":5,"playMinutes":200,"bestPlayers":3,"expansions":[]},
+
 
 "400314":{"name":"Apiary","video":"https://youtu.be/KdzNSPQlML0?si=6z-iogPGrBEX67z_","tutorialMinutes":30,"shelf":"14","ranking":0,"difficulty":3.0217,"bggRank":322,"minPlayers":1,"maxPlayers":5,"playMinutes":90,"bestPlayers":3,"expansions":[]},
 
@@ -718,6 +730,7 @@ const games = {"277659":{"name":"Final Girl","video":"https://youtu.be/pQ3IiUF4t
 
 "223321":{"name":"Detective: A Modern Crime Board Game","video":null,"tutorialMinutes":null,"shelf":null,"ranking":0,"difficulty":2.7449,"bggRank":354,"minPlayers":1,"maxPlayers":5,"playMinutes":180,"bestPlayers":2,"expansions":[]},
 
+
 "295895":{"name":"Distilled","video":null,"tutorialMinutes":null,"shelf":null,"ranking":0,"difficulty":3.0301,"bggRank":277,"minPlayers":1,"maxPlayers":5,"playMinutes":150,"bestPlayers":3,"expansions":[]},
 
 "91872":{"name":"Dungeons & Dragons: The Legend of Drizzt Board Game","video":null,"tutorialMinutes":null,"shelf":null,"ranking":0,"difficulty":2.5942,"bggRank":1045,"minPlayers":1,"maxPlayers":5,"playMinutes":60,"bestPlayers":"3,4","expansions":[]},
@@ -777,6 +790,7 @@ const games = {"277659":{"name":"Final Girl","video":"https://youtu.be/pQ3IiUF4t
 "283094":{"name":"Mansions of Madness: Second Edition â€“ Path of the Serpent: Expansion","video":null,"tutorialMinutes":null,"shelf":null,"ranking":0,"difficulty":3,"bggRank":0,"minPlayers":1,"maxPlayers":5,"playMinutes":180,"bestPlayers":4,"expansions":[]},
 
 "206547":{"name":"Mansions of Madness: Second Edition â€“ Recurring Nightmares: Figure and Tile Collection","video":null,"tutorialMinutes":null,"shelf":null,"ranking":0,"difficulty":2.6667,"bggRank":0,"minPlayers":1,"maxPlayers":5,"playMinutes":180,"bestPlayers":3,"expansions":[]},
+
 
 "241533":{"name":"Mansions of Madness: Second Edition â€“ Sanctum of Twilight: Expansion","video":null,"tutorialMinutes":null,"shelf":null,"ranking":0,"difficulty":2.619,"bggRank":0,"minPlayers":1,"maxPlayers":5,"playMinutes":180,"bestPlayers":4,"expansions":[]},
 
@@ -838,6 +852,7 @@ const games = {"277659":{"name":"Final Girl","video":"https://youtu.be/pQ3IiUF4t
 
 "366071":{"name":"Sally Face: Strange Nightmares","video":null,"tutorialMinutes":null,"shelf":null,"ranking":0,"difficulty":1.5,"bggRank":23278,"minPlayers":1,"maxPlayers":5,"playMinutes":45,"bestPlayers":null,"expansions":[]},
 
+
 "169786":{"name":"Scythe","video":null,"tutorialMinutes":null,"shelf":null,"ranking":8.25,"difficulty":3.4517,"bggRank":27,"minPlayers":1,"maxPlayers":5,"playMinutes":115,"bestPlayers":4,"expansions":[{"name":"Scythe: Encounters","id":"262151"},{"name":"Scythe: Invaders from Afar","id":"199727"},{"name":"Scythe: Modular Board","id":"279304"},{"name":"Scythe: The Rise of Fenris","id":"242277"}]},
 
 "279304":{"name":"Scythe: Modular Board","video":null,"tutorialMinutes":null,"shelf":null,"ranking":0,"difficulty":3.3182,"bggRank":0,"minPlayers":1,"maxPlayers":5,"playMinutes":115,"bestPlayers":4,"expansions":[]},
@@ -897,6 +912,7 @@ const games = {"277659":{"name":"Final Girl","video":"https://youtu.be/pQ3IiUF4t
 "367925":{"name":"The Lord of the Rings: Journeys in Middle-Earth â€“ Scourges of the Wastes Figure Pack","video":null,"tutorialMinutes":null,"shelf":null,"ranking":0,"difficulty":2.8571,"bggRank":0,"minPlayers":1,"maxPlayers":5,"playMinutes":120,"bestPlayers":"2,3","expansions":[]},
 
 "299597":{"name":"The Lord of the Rings: Journeys in Middle-earth â€“ Shadowed Paths Expansion","video":null,"tutorialMinutes":null,"shelf":null,"ranking":0,"difficulty":2.9688,"bggRank":0,"minPlayers":1,"maxPlayers":5,"playMinutes":120,"bestPlayers":"1,3","expansions":[]},
+
 
 "342189":{"name":"The Lord of the Rings: Journeys in Middle-Earth â€“ Spreading War Expansion","video":null,"tutorialMinutes":null,"shelf":null,"ranking":0,"difficulty":2.75,"bggRank":0,"minPlayers":1,"maxPlayers":5,"playMinutes":120,"bestPlayers":"2,3","expansions":[]},
 
@@ -958,6 +974,7 @@ const games = {"277659":{"name":"Final Girl","video":"https://youtu.be/pQ3IiUF4t
 
 "372544":{"name":"Wonderland's War: Shards of Madness","video":null,"tutorialMinutes":null,"shelf":null,"ranking":0,"difficulty":3,"bggRank":0,"minPlayers":2,"maxPlayers":5,"playMinutes":125,"bestPlayers":5,"expansions":[]},
 
+
 "365258":{"name":"World Wonders","video":null,"tutorialMinutes":null,"shelf":null,"ranking":0,"difficulty":2.2551,"bggRank":477,"minPlayers":1,"maxPlayers":5,"playMinutes":70,"bestPlayers":3,"expansions":[]},
 
 "350689":{"name":"Wormholes","video":null,"tutorialMinutes":null,"shelf":null,"ranking":0,"difficulty":2.1852,"bggRank":3180,"minPlayers":1,"maxPlayers":5,"playMinutes":45,"bestPlayers":"3,4","expansions":[]},
@@ -1017,6 +1034,7 @@ const games = {"277659":{"name":"Final Girl","video":"https://youtu.be/pQ3IiUF4t
 "456440":{"name":"Cozy Stickerville","video":null,"tutorialMinutes":null,"shelf":null,"ranking":0,"difficulty":1.2075,"bggRank":508,"minPlayers":1,"maxPlayers":6,"playMinutes":30,"bestPlayers":2,"expansions":[]},
 
 "223049":{"name":"Custom Heroes","video":null,"tutorialMinutes":null,"shelf":null,"ranking":6.5,"difficulty":1.6154,"bggRank":2532,"minPlayers":2,"maxPlayers":6,"playMinutes":45,"bestPlayers":4,"expansions":[]},
+
 
 "28259":{"name":"Cutthroat Caverns","video":null,"tutorialMinutes":null,"shelf":null,"ranking":6,"difficulty":2.0837,"bggRank":2504,"minPlayers":3,"maxPlayers":6,"playMinutes":90,"bestPlayers":"5,6","expansions":[{"name":"Cutthroat Caverns: Fresh Meat","id":"33091"}]},
 
@@ -1078,6 +1096,7 @@ const games = {"277659":{"name":"Final Girl","video":"https://youtu.be/pQ3IiUF4t
 
 "144761":{"name":"Going, Going, GONE!","video":null,"tutorialMinutes":null,"shelf":null,"ranking":0,"difficulty":1.25,"bggRank":5664,"minPlayers":2,"maxPlayers":6,"playMinutes":20,"bestPlayers":"4,5","expansions":[]},
 
+
 "304783":{"name":"Hadrian's Wall","video":null,"tutorialMinutes":null,"shelf":null,"ranking":0,"difficulty":3.1744,"bggRank":172,"minPlayers":1,"maxPlayers":6,"playMinutes":60,"bestPlayers":1,"expansions":[]},
 
 "366013":{"name":"Heat: Pedal to the Metal","video":null,"tutorialMinutes":null,"shelf":null,"ranking":0,"difficulty":2.2002,"bggRank":48,"minPlayers":1,"maxPlayers":6,"playMinutes":60,"bestPlayers":"5,6","expansions":[]},
@@ -1137,6 +1156,7 @@ const games = {"277659":{"name":"Final Girl","video":"https://youtu.be/pQ3IiUF4t
 "12325":{"name":"Perpetual Commotion","video":null,"tutorialMinutes":null,"shelf":null,"ranking":0,"difficulty":1.1,"bggRank":13192,"minPlayers":2,"maxPlayers":6,"playMinutes":45,"bestPlayers":"3,5","expansions":[]},
 
 "400995":{"name":"Perspectives","video":null,"tutorialMinutes":null,"shelf":null,"ranking":0,"difficulty":1.8148,"bggRank":1989,"minPlayers":2,"maxPlayers":6,"playMinutes":90,"bestPlayers":"3,4","expansions":[]},
+
 
 "16461":{"name":"POG The Game","video":null,"tutorialMinutes":null,"shelf":null,"ranking":0,"difficulty":1.1111,"bggRank":30385,"minPlayers":2,"maxPlayers":6,"playMinutes":30,"bestPlayers":2,"expansions":[]},
 
@@ -1198,6 +1218,7 @@ const games = {"277659":{"name":"Final Girl","video":"https://youtu.be/pQ3IiUF4t
 
 "27106":{"name":"The Authentic DaVinci Dilemma","video":"NONE","tutorialMinutes":null,"shelf":null,"ranking":0,"difficulty":1.5,"bggRank":0,"minPlayers":2,"maxPlayers":6,"playMinutes":60,"bestPlayers":null,"expansions":[]},
 
+
 "23964":{"name":"The Game of Life (40th Anniversary Edition)","video":null,"tutorialMinutes":null,"shelf":null,"ranking":0,"difficulty":1.2745,"bggRank":31417,"minPlayers":2,"maxPlayers":6,"playMinutes":30,"bestPlayers":"3,4","expansions":[]},
 
 "169462":{"name":"The Princess Bride: As You Wish","video":null,"tutorialMinutes":null,"shelf":null,"ranking":0,"difficulty":1.1667,"bggRank":25737,"minPlayers":2,"maxPlayers":6,"playMinutes":30,"bestPlayers":null,"expansions":[]},
@@ -1257,6 +1278,7 @@ const games = {"277659":{"name":"Final Girl","video":"https://youtu.be/pQ3IiUF4t
 "111124":{"name":"Dark Moon","video":null,"tutorialMinutes":null,"shelf":null,"ranking":0,"difficulty":2.3881,"bggRank":1709,"minPlayers":3,"maxPlayers":7,"playMinutes":75,"bestPlayers":"5,7","expansions":[]},
 
 "483":{"name":"Diplomacy","video":null,"tutorialMinutes":null,"shelf":null,"ranking":0,"difficulty":3.3223,"bggRank":892,"minPlayers":2,"maxPlayers":7,"playMinutes":360,"bestPlayers":7,"expansions":[]},
+
 
 "455903":{"name":"Diplomacy: The Golden Blade","video":null,"tutorialMinutes":null,"shelf":null,"ranking":0,"difficulty":1.8,"bggRank":18254,"minPlayers":2,"maxPlayers":7,"playMinutes":105,"bestPlayers":"3,5","expansions":[]},
 
@@ -1318,6 +1340,7 @@ const games = {"277659":{"name":"Final Girl","video":"https://youtu.be/pQ3IiUF4t
 
 "205398":{"name":"Citadels","video":null,"tutorialMinutes":null,"shelf":null,"ranking":0,"difficulty":2.0496,"bggRank":578,"minPlayers":2,"maxPlayers":8,"playMinutes":60,"bestPlayers":5,"expansions":[]},
 
+
 "178900":{"name":"Codenames","video":null,"tutorialMinutes":null,"shelf":null,"ranking":0,"difficulty":1.2513,"bggRank":163,"minPlayers":2,"maxPlayers":8,"playMinutes":15,"bestPlayers":"6,8","expansions":[]},
 
 "205158":{"name":"Codenames: Deep Undercover","video":null,"tutorialMinutes":null,"shelf":null,"ranking":0,"difficulty":1.3158,"bggRank":2525,"minPlayers":4,"maxPlayers":8,"playMinutes":15,"bestPlayers":"6,8","expansions":[]},
@@ -1377,6 +1400,7 @@ const games = {"277659":{"name":"Final Girl","video":"https://youtu.be/pQ3IiUF4t
 "192291":{"name":"Sushi Go Party!","video":null,"tutorialMinutes":null,"shelf":null,"ranking":0,"difficulty":1.3285,"bggRank":294,"minPlayers":2,"maxPlayers":8,"playMinutes":20,"bestPlayers":"4,5","expansions":[]},
 
 "115793":{"name":"The Big Bang Theory: Fact or Fiction Game","video":null,"tutorialMinutes":null,"shelf":null,"ranking":0,"difficulty":1.2222,"bggRank":31254,"minPlayers":2,"maxPlayers":8,"playMinutes":60,"bestPlayers":4,"expansions":[]},
+
 
 "16992":{"name":"Tsuro","video":null,"tutorialMinutes":null,"shelf":null,"ranking":6,"difficulty":1.2172,"bggRank":1270,"minPlayers":2,"maxPlayers":8,"playMinutes":20,"bestPlayers":"4,6","expansions":[]},
 
@@ -1438,6 +1462,7 @@ const games = {"277659":{"name":"Final Girl","video":"https://youtu.be/pQ3IiUF4t
 
 "295646":{"name":"Spyfest","video":null,"tutorialMinutes":null,"shelf":null,"ranking":0,"difficulty":2,"bggRank":20337,"minPlayers":4,"maxPlayers":10,"playMinutes":45,"bestPlayers":6,"expansions":[]},
 
+
 "1111":{"name":"Taboo","video":null,"tutorialMinutes":null,"shelf":null,"ranking":0,"difficulty":1.1988,"bggRank":2491,"minPlayers":4,"maxPlayers":10,"playMinutes":20,"bestPlayers":"6,8","expansions":[]},
 
 "169459":{"name":"The Princess Bride: A Battle of Wits","video":null,"tutorialMinutes":null,"shelf":null,"ranking":0,"difficulty":1.0833,"bggRank":26363,"minPlayers":2,"maxPlayers":10,"playMinutes":15,"bestPlayers":5,"expansions":[]},
@@ -1498,6 +1523,7 @@ const games = {"277659":{"name":"Final Girl","video":"https://youtu.be/pQ3IiUF4t
 
 "166019":{"name":"Mafia: Vendetta","video":null,"tutorialMinutes":null,"shelf":null,"ranking":0,"difficulty":1.625,"bggRank":17497,"minPlayers":7,"maxPlayers":17,"playMinutes":20,"bestPlayers":10,"expansions":[]},
 
+
 "420087":{"name":"Flip 7","video":null,"tutorialMinutes":null,"shelf":null,"ranking":0,"difficulty":1.0423,"bggRank":518,"minPlayers":3,"maxPlayers":18,"playMinutes":20,"bestPlayers":"5,6","expansions":[]},
 
 "123239":{"name":"Wits & Wagers Party","video":null,"tutorialMinutes":null,"shelf":null,"ranking":0,"difficulty":1.1228,"bggRank":2166,"minPlayers":4,"maxPlayers":18,"playMinutes":25,"bestPlayers":"5,6","expansions":[]},
@@ -1534,6 +1560,8 @@ const games = {"277659":{"name":"Final Girl","video":"https://youtu.be/pQ3IiUF4t
 
 "367466":{"name":"\nDune: Imperium – Immortality","video":null,"tutorialMinutes":null,"shelf":null,"ranking":8,"difficulty":3,"bggRank":null,"minPlayers":null,"maxPlayers":null,"playMinutes":null,"bestPlayers":null,"expansions":[]}};
 
+const gameRulesChats = {"277659":"https://chatgpt.com/c/6ae20d58-c78c-83ea-81b0-e3eb3e0438a3","338376":"https://chatgpt.com/c/6ae21213-96b8-83e8-abe7-070c0e6c7ef4","338957":"https://chatgpt.com/c/6ae21168-4170-83ea-b05e-1faa2bc61c38","7":"https://chatgpt.com/c/6ae21338-95ec-83e9-81a1-41907faad657","2961":"https://chatgpt.com/c/6ae21309-020c-83ea-a5ec-35f98ba2faab","174078":"https://chatgpt.com/c/6ae21310-17ec-83ea-b744-3754d2fb9f84","179275":"https://chatgpt.com/c/6ae213c4-a0fc-83e9-a62e-91b2d98ff490","2389":"https://chatgpt.com/c/6ae217b7-0f48-83e9-bf17-9d12039e1315","163412":"https://chatgpt.com/c/6ae217eb-705c-83e8-9951-cf1f1562546c","373106":"https://chatgpt.com/c/6ae21807-963c-83ea-82bc-747f97054d49","421006":"https://chatgpt.com/c/6ae21825-5294-83e9-a95d-6be5936c66ed","12333":"https://chatgpt.com/c/6ae2184e-43c8-83ea-8493-4a021091cf2d","285192":"https://chatgpt.com/c/6ae216e5-bf34-83ea-be84-b0bdd701dada","463605":"https://chatgpt.com/c/6ae2175e-5a50-83e9-8448-431502eb1fa7","354768":"https://chatgpt.com/c/6ae22e9f-cdfc-83ea-8cab-ab008669d0f0","371947":"https://chatgpt.com/c/6ae22ed2-3718-83ea-b566-1ec7541a250b","177736":"https://chatgpt.com/c/6ae22ef7-a088-83ea-a6bb-993a41d345b5","216788":"https://chatgpt.com/c/6ae22ef7-a088-83ea-a6bb-993a41d345b5","202408":"https://chatgpt.com/c/6ae22f25-22b0-83ea-bdf0-56b57f20913a","183231":"https://chatgpt.com/c/6ae22f6f-21c4-83ea-adf7-22d97b1784e1","161970":"https://chatgpt.com/c/6ae22f8f-bcb8-83e9-8442-7b2dfdf3b918","185343":"https://chatgpt.com/c/6ae22fd2-53c0-83ea-8df9-bd100545e1ba","297528":"https://chatgpt.com/c/6ae22fd2-53c0-83ea-8df9-bd100545e1ba","311193":"https://chatgpt.com/c/6ae23258-ab64-83ea-a932-c110c5d7b7de","359871":"https://chatgpt.com/c/6ae2327c-6888-83e9-8fbe-0ca7145eebbb","230802":"https://chatgpt.com/c/6ae2329d-e274-83e9-ba51-9e46c6e82eb4","256226":"https://chatgpt.com/c/6ae232b1-998c-83ea-bd36-795c19ac8e14","219513":"https://chatgpt.com/c/6ae232d1-9b54-83e9-9536-fdeb00e4f210","264238":"https://chatgpt.com/c/6ae232d1-9b54-83e9-9536-fdeb00e4f210","184460":"https://chatgpt.com/c/6ae23311-e2d8-83e9-a609-aadd379e5113","292564":"https://chatgpt.com/c/6ae23324-6a9c-83e9-8d2e-8ec0667b834b","383607":"https://chatgpt.com/c/6ae23339-a120-83e9-8fa8-ed349b296ef5"};
+
 const expansionParent = {"154638":"68448","216788":"177736","297528":"185343","258003":"194594","249499":"229491","297973":"199792","297972":"199792","332397":"199792","332390":"199792","259996":"199792","289056":"199792","289057":"199792","414976":"391137","414974":"391137","248273":"198830","253638":"198830","321238":"284378","341254":"312484","382350":"312484","408223":"396790","203542":"180974","257729":"180974","298565":"256680","365139":"256680","287220":"237182","330149":"237182","241386":"237182","272637":"237182","157427":"122522","193065":"162886","356510":"162886","262722":"162886","365137":"162886","180585":"146508","174095":"70919","247115":"215341","239291":"192135","349581":"192135","239290":"192135","283862":"192135","224897":"192135","349580":"192135","224898":"192135","235802":"192135","219788":"172287","219787":"172287","379786":"358661","174506":"170216","210674":"205059","255823":"205059","283094":"205059","206547":"205059","241533":"205059","229987":"205059","206548":"205059","40849":"30549","279304":"169786","242277":"169786","262151":"169786","199727":"169786","165458":"40692","81618":"40692","57072":"40692","57070":"40692","144171":"40692","195034":"161614","315708":"286096","238465":"179172","290448":"266192","300580":"266192","372544":"227935","198452":"10547","33091":"28259","242213":"215311","281941":"215311","400127":"352574","286823":"275467","226065":"157969","287576":"265736","321679":"265736","311441":"265736","216465":"181304","277564":"242302","211966":"153938","181817":"146021","381132":"315727","27645":"74","168633":"147949","184075":"147949","161920":"113924","278208":"233867","265375":"233867","265377":"233867","249326":"233020","274536":"233020","249792":"233020","223494":"199042","304297":"199042","299597":"269385","342189":"269385"};
 
 
@@ -1556,6 +1584,8 @@ function sorted(items){return items.sort((a,b)=>a[1].name.localeCompare(b[1].nam
 function shelfView(s){title.textContent=shelfLabel(s);document.title=title.textContent;const matches=sorted(baseEntries().filter(([id,g])=>g.shelf!==null&&g.shelf!==undefined&&shelfKey(g.shelf)===shelfKey(s)));if(!matches.length)add('p','No games assigned to this shelf yet.');for(const [id,g] of matches)link(g.name,'game='+encodeURIComponent(id));}
 
 function room(){title.textContent='Game Room';const tabs=add('div',null,'tabs');link('Browse by Shelf','browse=shelves',tabs);link('Player Count','browse=players',tabs);}
+
+
 
 function shelves(){title.textContent='Browse by Shelf';link('Unknown Shelf (Storage)','shelf=0');for(let i=1;i<=32;i++)link('Shelf '+i,'shelf='+i);link('Top Shelf','shelf=Top%20Shelf');link('Mixed','shelf=Mixed');}
 
@@ -1617,12 +1647,27 @@ if(g.video){
 
   // Receiver accepts POST JSON. Its CORS policy must allow this GitHub Pages origin.
 
+
+
   fetch(target,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({url:g.video}),mode:'cors'}).then(r=>{if(!r.ok)throw Error('Receiver rejected request');alert('Video request sent to Game Room TV.');}).catch(()=>alert('TV connection failed. Check your HTTPS receiver URL and CORS settings.'));
 
  };
 
 }
 
+
+// AI rules chat: the receiver opens the correct conversation on the Game Room computer.
+if (gameRulesChats[id]) {
+ const rulesBtn=add('button','🤖 AI Rules on Game Room TV','button');
+ rulesBtn.type='button';
+ rulesBtn.onclick=()=>{
+  if(!BOARDGAME_TV_HTTPS_BASE){alert('Game Room receiver URL has not been configured.');return;}
+  const target=BOARDGAME_TV_HTTPS_BASE.replace(/\/$/,'')+BOARDGAME_TV_RULES_PATH;
+  fetch(target,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({url:gameRulesChats[id]}),mode:'cors'})
+   .then(r=>{if(!r.ok)throw Error('Rules receiver rejected request ('+r.status+')');alert('Opening AI Rules on Game Room TV.');})
+   .catch(err=>{alert('Could not open rules on Game Room TV. Check receiver and Tailscale.');console.error(err);});
+ };
+}
 
 const bgg=add('a','📖 BoardGameGeek — Game Information','button');bgg.href='https://boardgamegeek.com/boardgame/'+encodeURIComponent(id);bgg.target='_blank';bgg.rel='noopener noreferrer';
 
