@@ -23,7 +23,7 @@ h1{font-size:clamp(26px,5.5vw,35px);color:#f2d294;margin:8px auto 18px;line-heig
 .button:active{transform:translateY(2px)}
 .button:disabled,.button[aria-disabled="true"]{opacity:.52;cursor:not-allowed;filter:grayscale(.35);transform:none}
 .shelf-button{background:linear-gradient(180deg,#f6e5bb,#d5bd80 50%,#ab874a)}
-.rating-hero{width:min(100%,460px);min-height:520px;aspect-ratio:9/16;margin:4px auto 20px;padding:44px 20px 48px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:16px;background:#32170d url("gn2000%20banner.webp") center center / 100% 100% no-repeat;box-shadow:0 10px 24px #120803a8;border-radius:7px}
+.rating-hero{width:min(100%,460px);margin:4px auto 20px;padding:6px 0 10px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:14px;background:transparent;box-shadow:none;border:0;border-radius:0}
 .portrait{display:block;width:min(80%,280px);height:auto;max-height:360px;object-fit:contain;border-radius:15px;box-shadow:0 5px 17px #17090599;margin:0 auto}
 .rank{font-size:clamp(20px,4.5vw,25px);line-height:1.25;font-weight:bold;color:#ffe8b5;text-shadow:0 2px 4px #1c0b05,0 0 12px #160a05,0 0 2px #160a05;padding:8px 10px;background:#241008b5;border:1px solid #b78d4c;border-radius:8px;max-width:94%}
 .details{background:rgba(39,20,10,.94);border:1px solid #b08b53;box-shadow:0 5px 15px #1409038c;padding:15px;border-radius:12px;text-align:left;line-height:1.8;margin:20px auto;max-width:460px;color:#f6e5c5}
@@ -35,7 +35,7 @@ h1{font-size:clamp(26px,5.5vw,35px);color:#f2d294;margin:8px auto 18px;line-heig
 .group-title{color:#ffdc9b;margin-top:26px;text-shadow:0 2px 6px #150904}
 .expansions a{color:#ffe0a0;text-decoration:underline;text-underline-offset:3px}
 #content>p{background:#291408d9;padding:10px;border-radius:8px}
-@media(max-width:400px){body{padding:14px 7px 30px}main{padding:0 4px}.button{font-size:16px}.rating-hero{padding:26px 12px 30px;min-height:0}}
+@media(max-width:400px){body{padding:14px 7px 30px}main{padding:0 4px}.button{font-size:16px}.rating-hero{padding:6px 0 10px}}
 </style></head>
 
 
@@ -11761,7 +11761,7 @@ const g=games[id];if(!g){title.textContent='Game Not Found';add('p','This BGG ID
 title.textContent=g.name;document.title=g.name+' | Joey’s Board Game Night';
 
 
-// The gold-leaf banner is a backdrop for Joey's reaction photo and ranking only.
+// Rating photo and score appear directly over the tree-bark page background.
 const hero=add('section',null,'rating-hero');
 const img=add('img',null,'portrait',hero);img.alt='Joey rating reaction';
 
