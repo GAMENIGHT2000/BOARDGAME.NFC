@@ -10,10 +10,36 @@
 <title>Joey’s Board Game Night</title>
 
 
-<style>*{box-sizing:border-box}[hidden]{display:none!important}body{font-family:Arial,sans-serif;background:#012169 url("gn2000%20background.webp") center center / cover fixed;color:white;text-align:center;margin:0;padding:26px 14px}main{max-width:560px;margin:auto;background:rgba(0,18,62,.76);padding:18px 12px;border-radius:18px;min-height:90vh}h1{color:#ff9900}.button{display:block;background:#ff8800;color:#111;font-size:18px;font-weight:bold;text-decoration:none;border:0;border-radius:12px;padding:17px 14px;margin:12px auto;max-width:450px;cursor:pointer}.button:hover,.button:focus{background:#ffbb55}.portrait{width:min(100%,310px);height:auto;border-radius:16px;object-fit:contain;margin:14px auto}.rank{color:#ffcc76;font-size:22px;font-weight:bold}.shelf-button{background:#ffc04d}.details{background:#00194f;padding:15px;border-radius:12px;text-align:left;line-height:1.9;margin:20px auto;max-width:450px}.details div{border-bottom:1px solid #284c8c}.difficulty{background:#204780;color:#ffdf88;padding:3px 7px}.tabs{display:flex;gap:10px;justify-content:center}.tabs .button{flex:1}.group-title{color:#ffcc76;margin-top:24px}.expansions a{color:#ffcc76}.site-banner{display:block;width:100%;height:auto;max-height:240px;object-fit:contain;margin:0 auto 12px;border-radius:12px}h1{font-size:clamp(22px,5vw,30px);margin:12px 0 20px;text-wrap:balance}</style></head>
+<style>
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+:root{color-scheme:dark;--gold:#d8af64;--pale:#f6e6c6;--deep:#251208}
+html{min-height:100%;background:#2b1a11}
+body{font-family:Georgia,'Times New Roman',serif;background:#2b1a11 url("gn2000%20background.webp") center center / cover fixed;color:var(--pale);text-align:center;margin:0;padding:24px 12px 50px}
+main{max-width:560px;margin:0 auto;background:transparent;padding:0 8px;min-height:90vh}
+h1{font-size:clamp(26px,5.5vw,35px);color:#f2d294;margin:8px auto 18px;line-height:1.18;text-shadow:0 3px 8px #140a05,0 1px 2px #140a05;letter-spacing:.02em}
+.button{display:block;width:100%;max-width:460px;margin:12px auto;padding:15px 16px;border:2px solid #6d4520;border-radius:10px;background:linear-gradient(180deg,#f2d99e 0%,#d5aa61 48%,#ad7837 100%);box-shadow:0 3px 0 #452710,0 5px 14px #14090491;color:#2a190c;font-family:Georgia,'Times New Roman',serif;font-size:18px;font-weight:bold;line-height:1.3;text-decoration:none;text-shadow:0 1px 0 #fff5d766;cursor:pointer;transition:filter .14s,transform .14s}
+.button:hover,.button:focus-visible{filter:brightness(1.12);transform:translateY(-1px);outline:2px solid #fbe2a3;outline-offset:2px}
+.button:active{transform:translateY(2px)}
+.button:disabled,.button[aria-disabled="true"]{opacity:.52;cursor:not-allowed;filter:grayscale(.35);transform:none}
+.shelf-button{background:linear-gradient(180deg,#f6e5bb,#d5bd80 50%,#ab874a)}
+.rating-hero{width:min(100%,460px);min-height:520px;aspect-ratio:9/16;margin:4px auto 20px;padding:44px 20px 48px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:16px;background:#32170d url("gn2000%20banner.webp") center center / 100% 100% no-repeat;box-shadow:0 10px 24px #120803a8;border-radius:7px}
+.portrait{display:block;width:min(80%,280px);height:auto;max-height:360px;object-fit:contain;border-radius:15px;box-shadow:0 5px 17px #17090599;margin:0 auto}
+.rank{font-size:clamp(20px,4.5vw,25px);line-height:1.25;font-weight:bold;color:#ffe8b5;text-shadow:0 2px 4px #1c0b05,0 0 12px #160a05,0 0 2px #160a05;padding:8px 10px;background:#241008b5;border:1px solid #b78d4c;border-radius:8px;max-width:94%}
+.details{background:rgba(39,20,10,.94);border:1px solid #b08b53;box-shadow:0 5px 15px #1409038c;padding:15px;border-radius:12px;text-align:left;line-height:1.8;margin:20px auto;max-width:460px;color:#f6e5c5}
+.details div{border-bottom:1px solid #876039;padding:3px 2px}
+.details div:last-child{border-bottom:0}
+.difficulty{background:rgba(113,73,30,.6);color:#ffe2a0;padding:5px 7px;border-radius:3px}
+.tabs{display:flex;gap:9px;justify-content:center}
+.tabs .button{flex:1;min-width:0;font-size:16px}
+.group-title{color:#ffdc9b;margin-top:26px;text-shadow:0 2px 6px #150904}
+.expansions a{color:#ffe0a0;text-decoration:underline;text-underline-offset:3px}
+#content>p{background:#291408d9;padding:10px;border-radius:8px}
+@media(max-width:400px){body{padding:14px 7px 30px}main{padding:0 4px}.button{font-size:16px}.rating-hero{padding:26px 12px 30px;min-height:0}}
+</style></head>
 
 
-<body><main><img class="site-banner" src="gn2000%20banner.webp" alt="Game Night 2000 banner"><h1 id="title">Joey’s Board Game Night</h1><div id="content"></div></main>
+<body><main><h1 id="title">Joey’s Board Game Night</h1><div id="content"></div></main>
 
 
 <script>
@@ -11735,7 +11761,9 @@ const g=games[id];if(!g){title.textContent='Game Not Found';add('p','This BGG ID
 title.textContent=g.name;document.title=g.name+' | Joey’s Board Game Night';
 
 
-const img=add('img',null,'portrait');img.alt='Joey rating reaction';
+// The gold-leaf banner is a backdrop for Joey's reaction photo and ranking only.
+const hero=add('section',null,'rating-hero');
+const img=add('img',null,'portrait',hero);img.alt='Joey rating reaction';
 
 
 const rank=g.ranking==null?null:Number(g.ranking);
@@ -11744,7 +11772,7 @@ const rank=g.ranking==null?null:Number(g.ranking);
 img.src=rank===0?'joey-unplayed.jpg':rank===null?'joey-unplayed.jpg':rank<3?'joey-terrible.jpg':rank<5?'joey-disgusted.jpg':rank<6.5?'joey-neutral.jpg':rank<8?'joey-happy.jpg':rank<9?'joey-excited.jpg':'joey-top-ten.jpg';
 
 
-add('div',rank===0?'Not Played Yet':rank===null?'Ranking Not Assigned':'Joey’s Ranking: '+g.ranking,'rank');
+add('div',rank===0?'Not Played Yet':rank===null?'Ranking Not Assigned':'Joey’s Ranking: '+g.ranking,'rank',hero);
 
 
 // Game controls: local and Game Room PC AI Rules are separate. Remote actions
