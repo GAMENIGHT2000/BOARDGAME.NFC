@@ -24,7 +24,7 @@ h1{font-size:clamp(26px,5.5vw,35px);color:#f2d294;margin:8px auto 18px;line-heig
 .button:disabled,.button[aria-disabled="true"]{opacity:.52;cursor:not-allowed;filter:grayscale(.35);transform:none}
 .shelf-button{background:linear-gradient(180deg,#f6e5bb,#d5bd80 50%,#ab874a)}
 .rating-hero{width:min(100%,460px);margin:4px auto 20px;padding:6px 0 10px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:14px;background:transparent;box-shadow:none;border:0;border-radius:0}
-.portrait{display:block;width:auto;max-width:min(92%,360px);height:auto;max-height:520px;object-fit:contain;border-radius:12px;box-shadow:0 5px 17px #17090599;margin:0 auto}
+.portrait{display:block;width:min(80%,280px);height:auto;max-height:360px;object-fit:contain;border-radius:15px;box-shadow:0 5px 17px #17090599;margin:0 auto}
 .rank{font-size:clamp(20px,4.5vw,25px);line-height:1.25;font-weight:bold;color:#ffe8b5;text-shadow:0 2px 4px #1c0b05,0 0 12px #160a05,0 0 2px #160a05;padding:8px 10px;background:#241008b5;border:1px solid #b78d4c;border-radius:8px;max-width:94%}
 .details{background:rgba(39,20,10,.94);border:1px solid #b08b53;box-shadow:0 5px 15px #1409038c;padding:15px;border-radius:12px;text-align:left;line-height:1.8;margin:20px auto;max-width:460px;color:#f6e5c5}
 .details div{border-bottom:1px solid #876039;padding:3px 2px}
@@ -37,7 +37,10 @@ h1{font-size:clamp(26px,5.5vw,35px);color:#f2d294;margin:8px auto 18px;line-heig
 #content>p{background:#291408d9;padding:10px;border-radius:8px}
 @media(max-width:400px){body{padding:14px 7px 30px}main{padding:0 4px}.button{font-size:16px}.rating-hero{padding:6px 0 10px}}
 
-.champion-grid{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:12px auto 18px;max-width:560px}.champion-card{flex:1 1 125px;max-width:170px;min-width:110px;background:#291408e6;border:1px solid #a9844d;border-radius:12px;padding:12px 8px;display:flex;flex-direction:column;align-items:center;gap:5px}.champion-photo{width:80px;height:80px;object-fit:cover;border:2px solid #d8af64;border-radius:50%;background:#54391f}.champion-placeholder{display:grid;place-items:center;font-size:40px}.champion-medal{font-size:25px}.champion-name{font-weight:bold;color:#f8e4bf;overflow-wrap:anywhere}.champion-wins{color:#d8af64;font-size:14px}.champion-history{color:#f6e6c6}.rating-hero{margin-top:35px}.rating-hero .portrait{aspect-ratio:auto;overflow:visible;background:transparent}@media(max-width:400px){.rating-hero .portrait{max-width:95%;max-height:480px}}
+.champion-grid{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:12px auto 18px;max-width:560px}.champion-card{flex:1 1 125px;max-width:170px;min-width:110px;background:#291408e6;border:1px solid #a9844d;border-radius:12px;padding:12px 8px;display:flex;flex-direction:column;align-items:center;gap:5px}.champion-photo{width:80px;height:80px;object-fit:cover;border:2px solid #d8af64;border-radius:50%;background:#54391f}.champion-placeholder{display:grid;place-items:center;font-size:40px}.champion-medal{font-size:25px}.champion-name{font-weight:bold;color:#f8e4bf;overflow-wrap:anywhere}.champion-wins{color:#d8af64;font-size:14px}.champion-history{color:#f6e6c6}.rating-hero{margin-top:35px}
+
+/* Game room navigation and instant main-game searching */
+.search-panel{background:rgba(48,29,16,.95);border:1px solid #ae8750;border-radius:12px;padding:15px;margin:18px auto;max-width:500px}.search-label{display:block;color:#f3d294;font-weight:bold;margin-bottom:9px}.game-search{width:100%;padding:14px;color:#321b0c;background:#fff0d3;border:2px solid #c79c53;border-radius:10px;font:17px Georgia,serif}.alphabet{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin:15px 0 3px}.letter-button{color:#f9e8c5;background:#52361e;border:1px solid #b78d52;border-radius:6px;padding:7px 9px;cursor:pointer;font:bold 13px Georgia}.letter-button.selected{background:#e3b66f;color:#2b160b}.game-result-count{font-weight:bold;color:#f3d294}.search-shelf{display:block;color:#50300e;font-size:12px;font-weight:normal;margin-top:3px}.nav-footer{margin:35px auto 12px;border-top:1px solid #957041;padding-top:15px}.expansion-list{margin:6px 0;padding-left:22px}.owned-expansions strong{color:#f3d294}.owned-expansions a{color:#f6d595}.owned-expansions li{margin:4px 0}
 </style></head>
 
 
@@ -11714,18 +11717,28 @@ function baseEntries(){return Object.entries(games).filter(([id])=>!expansionPar
 function sorted(items){return items.sort((a,b)=>a[1].name.localeCompare(b[1].name,undefined,{sensitivity:'base'}));}
 
 
-function shelfView(s){title.textContent=shelfLabel(s);document.title=title.textContent;const matches=sorted(baseEntries().filter(([id,g])=>g.shelf!==null&&g.shelf!==undefined&&shelfKey(g.shelf)===shelfKey(s)));if(!matches.length)add('p','No games assigned to this shelf yet.');for(const [id,g] of matches)link(g.name,'game='+encodeURIComponent(id));}
-
-
-function room(){title.textContent='Game Room';const tabs=add('div',null,'tabs');link('Browse by Shelf','browse=shelves',tabs);link('Player Count','browse=players',tabs);link('All Games','browse=all');link('Players & Profiles','tracker=players');link('👍 Most Liked','tracker=leaderboard&type=liked');link('🎲 Most Played','tracker=leaderboard&type=played');link('🏆 Annual Player Rankings','tracker=leaderboard&type=performance');link('🥇 Most Player Wins','tracker=leaderboard&type=wins');}
-
-
-function allGames(){title.textContent='All Games';for(const [id,g] of sorted(baseEntries()))link(g.name,'game='+encodeURIComponent(id));}
-function trackerView(view){title.textContent=view==='players'?'Player Profiles':'Game Leaderboards';const frame=add('iframe',null,'tracker-frame');const u=new URL(NFC_TRACKER_URL);u.searchParams.set('view',view);if(query.has('type'))u.searchParams.set('type',query.get('type'));frame.src=u.toString();frame.title=title.textContent;frame.loading='lazy';frame.style.cssText='width:100%;height:850px;border:1px solid #b08b53;border-radius:12px;background:#28170f';const a=add('a','Open Tracker in Full Screen','button');a.href=frame.src;a.target='_blank';a.rel='noopener noreferrer';}
-function shelves(){title.textContent='Browse by Shelf';link('Unknown Shelf (Storage)','shelf=0');for(let i=1;i<=32;i++)link('Shelf '+i,'shelf='+i);link('Top Shelf','shelf=Top%20Shelf');link('Mixed','shelf=Mixed');}
-
-
-function players(){title.textContent='Browse by Player Count';for(let n=2;n<=12;n++)link(n+' Players','players='+n);link('12+ Players','players=12plus');}
+function addFooter(){const foot=add('div',null,'nav-footer');link('🏠 Main Menu','',foot);}
+function shelfView(s){title.textContent=shelfLabel(s);document.title=title.textContent;const matches=sorted(baseEntries().filter(([id,g])=>g.shelf!=null&&shelfKey(g.shelf)===shelfKey(s)));if(!matches.length)add('p','No games assigned to this shelf yet.');for(const [id,g] of matches)link(g.name,'game='+encodeURIComponent(id));link('← Back to All Games','browse=all');addFooter();}
+function room(){title.textContent='🎲 Game Room';link('📚 All Games','browse=all');link('🗄️ Browse by Shelf','browse=shelves');link('🎲 Browse by Player Count','browse=players');link('👥 Players & Profiles','tracker=players');const t=link('🎲 Record a Game','tracker=record');link('🏆 Leaderboards','tracker=leaderboard&type=performance');link('👍 Most Liked Games','tracker=leaderboard&type=liked');link('👎 Least Liked Games','tracker=leaderboard&type=disliked');link('🎲 Most Played Games','tracker=leaderboard&type=played');link('❤️ Most Favorited Games','tracker=leaderboard&type=favorites');}
+function allGames(){
+ title.textContent='📚 All Games';document.title='All Games | Joey’s Board Game Night';
+ const box=add('section',null,'search-panel');add('label','Find a Board Game','search-label',box);
+ const search=add('input',null,'game-search',box);search.type='search';search.placeholder='Start typing a game name…';search.setAttribute('aria-label','Find a game');search.autocomplete='off';
+ const alphabet=add('div',null,'alphabet',box),letters=['All',...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'];let active='All';
+ const heading=add('p','Browse Games','game-result-count'),results=add('div',null,'game-results');
+ function draw(){results.replaceChildren();const value=search.value.trim().toLocaleLowerCase(),found=sorted(baseEntries()).filter(([id,g])=>(active==='All'||g.name.trim().toUpperCase().startsWith(active))&&g.name.toLocaleLowerCase().includes(value));heading.textContent=found.length+' main games'+(active==='All'?'':' beginning with '+active);if(!found.length)add('p','No matching main games.',null,results);found.forEach(([id,g])=>{const a=link(g.name,'game='+encodeURIComponent(id),results);const shelf=add('span',g.shelf==null?'':' · '+shelfLabel(g.shelf),'search-shelf',a);});}
+ letters.forEach(letter=>{const b=add('button',letter,'letter-button',alphabet);b.type='button';b.onclick=()=>{active=letter;search.value='';alphabet.querySelectorAll('button').forEach(x=>x.classList.toggle('selected',x===b));draw();};if(letter==='All')b.classList.add('selected');});
+ search.oninput=()=>{active='All';alphabet.querySelectorAll('button').forEach(x=>x.classList.toggle('selected',x.textContent==='All'));draw();};draw();addFooter();
+}
+function trackerView(view){
+ if(view==='record'){const a=new URL(NFC_TRACKER_URL);a.searchParams.set('view','game');location.replace(a.toString());return;}
+ title.textContent=view==='players'?'👥 Players & Profiles':'🏆 Game Leaderboards';
+ const frame=add('iframe',null,'tracker-frame'),u=new URL(NFC_TRACKER_URL);u.searchParams.set('view',view);if(query.has('type'))u.searchParams.set('type',query.get('type'));
+ frame.src=u.toString();frame.title=title.textContent;frame.loading='eager';frame.style.cssText='width:100%;height:1050px;border:1px solid #b08b53;border-radius:12px;background:#28170f';
+ const a=add('a','Open Tracker in Full Screen','button');a.href=frame.src;a.target='_blank';a.rel='noopener noreferrer';addFooter();
+}
+function shelves(){title.textContent='🗄️ Browse by Shelf';link('Unknown Shelf (Storage)','shelf=0');for(let i=1;i<=32;i++)link('Shelf '+i,'shelf='+i);link('Top Shelf','shelf=Top%20Shelf');link('Mixed','shelf=Mixed');link('← Back to All Games','browse=all');addFooter();}
+function players(){title.textContent='Browse by Player Count';for(let n=2;n<=12;n++)link(n+' Players','players='+n);link('12+ Players','players=12plus');addFooter();}
 
 
 function supports(g,n){if(g.minPlayers==null||g.maxPlayers==null)return false;const min=Number(g.minPlayers),max=Number(g.maxPlayers);return Number.isFinite(min)&&Number.isFinite(max)&&min<=n&&max>=n;}
@@ -11753,6 +11766,7 @@ add('h2','Best for '+(over?'12+':n)+' Players','group-title');if(!recommended.le
 
 
 add('h2','Also Supports '+(over?'12+':n)+' Players','group-title');if(!other.length)add('p','No additional games recorded.');for(const [id,g] of other)link(g.name,'game='+encodeURIComponent(id));
+link('← Back to All Games','browse=all');addFooter();
 
 
 }
@@ -11787,17 +11801,13 @@ add('div',rank===0?'Not Played Yet':rank===null?'Ranking Not Assigned':'Joey’s
 // send the current game's spreadsheet URL to the Windows receiver.
 
 
-
-
-if(g.expansions.length){const sec=add('section',null,'details expansions');add('h2','Expansions I Own','group-title',sec);for(const e of g.expansions){const p=add('div',null,null,sec);const a=add('a',e.name,null,p);a.href='https://boardgamegeek.com/boardgame/'+encodeURIComponent(e.id);a.target='_blank';a.rel='noopener noreferrer';}}
-
-
 // Top champions are fetched with JSONP because this website is hosted on GitHub Pages.
 const championSection=add('section',null,'champions');
 add('h2','🏆 Top Champions','group-title',championSection);
 const championBody=add('div','Loading champions…','champion-grid',championSection);
 const trackerLink=new URL(NFC_TRACKER_URL);trackerLink.searchParams.set('view','game');trackerLink.searchParams.set('bggId',id);trackerLink.searchParams.set('gameName',g.name);
 const quickRecord=add('a','🎲 Track This Game','button');quickRecord.href=trackerLink.toString();quickRecord.target='_blank';quickRecord.rel='noopener noreferrer';
+const addPlayersUrl=new URL(NFC_TRACKER_URL);addPlayersUrl.searchParams.set('view','players');const addPlayersLink=add('a','👥 Add Players','button');addPlayersLink.href=addPlayersUrl.toString();addPlayersLink.target='_blank';addPlayersLink.rel='noopener noreferrer';
 const history=add('p','Game history will appear after you record plays.','champion-history',championSection);
 function retrieveChampions(){
  const callback='nfcChampions'+Math.floor(Math.random()*1000000000);
@@ -11807,13 +11817,13 @@ function retrieveChampions(){
   if(!response.ok){championBody.textContent='Unable to load champions.';return;}
   history.textContent=(response.plays||0)+' recorded plays';championBody.textContent='';
   const winners=response.champions||[];
-  if(!winners.length){championBody.textContent='No games recorded yet. Record the first play!';return;}
+  if(!winners.length){championBody.textContent='No champions recorded yet. Record the first win!';return;}
   const winnersByTier=[...new Set(winners.map(p=>p.wins))];
   winners.forEach(p=>{const card=add('div',null,'champion-card',championBody);const tier=winnersByTier.indexOf(p.wins);
     add('div',tier===0?'🥇':tier===1?'🥈':'🥉','champion-medal',card);
     if(p.photo){const photo=add('img',null,'champion-photo',card);photo.src=p.photo;photo.alt=p.name;}
-    else{add('div',p.isGame?'🎲':'👤','champion-photo champion-placeholder',card);}
-    add('div',p.name,'champion-name',card);add('div',p.wins+(p.wins===1?' win':' wins')+(p.wins===0?' · '+p.plays+' plays':''),'champion-wins',card);
+    else{add('div','👤','champion-photo champion-placeholder',card);}
+    add('div',p.name,'champion-name',card);add('div',p.wins+(p.wins===1?' win':' wins'),'champion-wins',card);
   });
  };
  const url=new URL(NFC_TRACKER_URL);url.searchParams.set('action','game');url.searchParams.set('bggId',id);url.searchParams.set('callback',callback);script.src=url.toString();script.onerror=()=>{clearTimeout(timeout);delete window[callback];script.remove();championBody.textContent='Unable to load champions.';};document.body.append(script);
@@ -11931,15 +11941,12 @@ bgg.href='https://boardgamegeek.com/boardgame/'+encodeURIComponent(id);
 
 
 bgg.target='_blank';bgg.rel='noopener noreferrer';
-
-// Return to Shelf is deliberately last in the game action button list.
-if(g.shelf!==null&&g.shelf!==undefined&&String(g.shelf).trim()!==''){
-  link('Return to '+shelfLabel(g.shelf),'shelf='+encodeURIComponent(shelfKey(g.shelf)),root,'button shelf-button');
-}else{const shelfButton=add('button','Return to Shelf (Not Assigned)','button shelf-button');shelfButton.disabled=true;}
-
+if(g.shelf!=null&&String(g.shelf).trim()!=='')link('← Return to '+shelfLabel(g.shelf),'shelf='+encodeURIComponent(shelfKey(g.shelf)),root,'button shelf-button');else{const noShelf=add('button','Shelf Not Assigned','button shelf-button');noShelf.disabled=true;}
+link('🏠 Main Menu','');
 
 
 const details=add('section',null,'details');
+if(g.expansions.length){const item=add('div',null,'owned-expansions',details);add('strong','Expansions Owned','',item);const list=add('ul',null,'expansion-list',item);g.expansions.forEach(e=>{const li=add('li',null,null,list);const a=add('a',e.name,null,li);a.href='https://boardgamegeek.com/boardgame/'+encodeURIComponent(e.id);a.target='_blank';a.rel='noopener noreferrer';});}
 
 
 const fields=[['Shelf Location',g.shelf===null?null:shelfLabel(g.shelf)],['Minimum Players',g.minPlayers],['Maximum Players',g.maxPlayers],['Best Player Count',g.bestPlayers],['Estimated Play Time',g.playMinutes==null?null:g.playMinutes+' minutes'],['Learning Difficulty',g.difficulty==null?null:Number(g.difficulty).toFixed(2)+' out of 5'],['BGG Rank',g.bggRank],['Tutorial Length',g.tutorialMinutes==null?null:g.tutorialMinutes+' minutes']];
