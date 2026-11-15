@@ -24,7 +24,7 @@ h1{font-size:clamp(26px,5.5vw,35px);color:#f2d294;margin:8px auto 18px;line-heig
 .button:disabled,.button[aria-disabled="true"]{opacity:.52;cursor:not-allowed;filter:grayscale(.35);transform:none}
 .shelf-button{background:linear-gradient(180deg,#f6e5bb,#d5bd80 50%,#ab874a)}
 .rating-hero{width:min(100%,460px);margin:4px auto 20px;padding:6px 0 10px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:14px;background:transparent;box-shadow:none;border:0;border-radius:0}
-.portrait{display:block;width:min(80%,280px);height:auto;max-height:360px;object-fit:contain;border-radius:15px;box-shadow:0 5px 17px #17090599;margin:0 auto}
+.portrait{display:block;width:auto;max-width:min(92%,360px);height:auto;max-height:520px;object-fit:contain;border-radius:12px;box-shadow:0 5px 17px #17090599;margin:0 auto}
 .rank{font-size:clamp(20px,4.5vw,25px);line-height:1.25;font-weight:bold;color:#ffe8b5;text-shadow:0 2px 4px #1c0b05,0 0 12px #160a05,0 0 2px #160a05;padding:8px 10px;background:#241008b5;border:1px solid #b78d4c;border-radius:8px;max-width:94%}
 .details{background:rgba(39,20,10,.94);border:1px solid #b08b53;box-shadow:0 5px 15px #1409038c;padding:15px;border-radius:12px;text-align:left;line-height:1.8;margin:20px auto;max-width:460px;color:#f6e5c5}
 .details div{border-bottom:1px solid #876039;padding:3px 2px}
@@ -37,7 +37,7 @@ h1{font-size:clamp(26px,5.5vw,35px);color:#f2d294;margin:8px auto 18px;line-heig
 #content>p{background:#291408d9;padding:10px;border-radius:8px}
 @media(max-width:400px){body{padding:14px 7px 30px}main{padding:0 4px}.button{font-size:16px}.rating-hero{padding:6px 0 10px}}
 
-.champion-grid{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:12px auto 18px;max-width:560px}.champion-card{flex:1 1 125px;max-width:170px;min-width:110px;background:#291408e6;border:1px solid #a9844d;border-radius:12px;padding:12px 8px;display:flex;flex-direction:column;align-items:center;gap:5px}.champion-photo{width:80px;height:80px;object-fit:cover;border:2px solid #d8af64;border-radius:50%;background:#54391f}.champion-placeholder{display:grid;place-items:center;font-size:40px}.champion-medal{font-size:25px}.champion-name{font-weight:bold;color:#f8e4bf;overflow-wrap:anywhere}.champion-wins{color:#d8af64;font-size:14px}.champion-history{color:#f6e6c6}.rating-hero{margin-top:35px}
+.champion-grid{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:12px auto 18px;max-width:560px}.champion-card{flex:1 1 125px;max-width:170px;min-width:110px;background:#291408e6;border:1px solid #a9844d;border-radius:12px;padding:12px 8px;display:flex;flex-direction:column;align-items:center;gap:5px}.champion-photo{width:80px;height:80px;object-fit:cover;border:2px solid #d8af64;border-radius:50%;background:#54391f}.champion-placeholder{display:grid;place-items:center;font-size:40px}.champion-medal{font-size:25px}.champion-name{font-weight:bold;color:#f8e4bf;overflow-wrap:anywhere}.champion-wins{color:#d8af64;font-size:14px}.champion-history{color:#f6e6c6}.rating-hero{margin-top:35px}.rating-hero .portrait{aspect-ratio:auto;overflow:visible;background:transparent}@media(max-width:400px){.rating-hero .portrait{max-width:95%;max-height:480px}}
 </style></head>
 
 
@@ -11787,22 +11787,6 @@ add('div',rank===0?'Not Played Yet':rank===null?'Ranking Not Assigned':'Joey’s
 // send the current game's spreadsheet URL to the Windows receiver.
 
 
-if(g.shelf!==null&&g.shelf!==undefined&&String(g.shelf).trim()!==''){
-
-
-  link('Return to '+shelfLabel(g.shelf),'shelf='+encodeURIComponent(shelfKey(g.shelf)),root,'button shelf-button');
-
-
-} else {
-
-
-  const shelfButton=add('button','Return to Shelf (Not Assigned)','button shelf-button');
-
-
-  shelfButton.disabled=true;
-
-
-}
 
 
 if(g.expansions.length){const sec=add('section',null,'details expansions');add('h2','Expansions I Own','group-title',sec);for(const e of g.expansions){const p=add('div',null,null,sec);const a=add('a',e.name,null,p);a.href='https://boardgamegeek.com/boardgame/'+encodeURIComponent(e.id);a.target='_blank';a.rel='noopener noreferrer';}}
@@ -11823,13 +11807,13 @@ function retrieveChampions(){
   if(!response.ok){championBody.textContent='Unable to load champions.';return;}
   history.textContent=(response.plays||0)+' recorded plays';championBody.textContent='';
   const winners=response.champions||[];
-  if(!winners.length){championBody.textContent='No champions recorded yet. Record the first win!';return;}
+  if(!winners.length){championBody.textContent='No games recorded yet. Record the first play!';return;}
   const winnersByTier=[...new Set(winners.map(p=>p.wins))];
   winners.forEach(p=>{const card=add('div',null,'champion-card',championBody);const tier=winnersByTier.indexOf(p.wins);
     add('div',tier===0?'🥇':tier===1?'🥈':'🥉','champion-medal',card);
     if(p.photo){const photo=add('img',null,'champion-photo',card);photo.src=p.photo;photo.alt=p.name;}
-    else{add('div','👤','champion-photo champion-placeholder',card);}
-    add('div',p.name,'champion-name',card);add('div',p.wins+(p.wins===1?' win':' wins'),'champion-wins',card);
+    else{add('div',p.isGame?'🎲':'👤','champion-photo champion-placeholder',card);}
+    add('div',p.name,'champion-name',card);add('div',p.wins+(p.wins===1?' win':' wins')+(p.wins===0?' · '+p.plays+' plays':''),'champion-wins',card);
   });
  };
  const url=new URL(NFC_TRACKER_URL);url.searchParams.set('action','game');url.searchParams.set('bggId',id);url.searchParams.set('callback',callback);script.src=url.toString();script.onerror=()=>{clearTimeout(timeout);delete window[callback];script.remove();championBody.textContent='Unable to load champions.';};document.body.append(script);
@@ -11947,6 +11931,12 @@ bgg.href='https://boardgamegeek.com/boardgame/'+encodeURIComponent(id);
 
 
 bgg.target='_blank';bgg.rel='noopener noreferrer';
+
+// Return to Shelf is deliberately last in the game action button list.
+if(g.shelf!==null&&g.shelf!==undefined&&String(g.shelf).trim()!==''){
+  link('Return to '+shelfLabel(g.shelf),'shelf='+encodeURIComponent(shelfKey(g.shelf)),root,'button shelf-button');
+}else{const shelfButton=add('button','Return to Shelf (Not Assigned)','button shelf-button');shelfButton.disabled=true;}
+
 
 
 const details=add('section',null,'details');
