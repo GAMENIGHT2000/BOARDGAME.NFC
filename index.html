@@ -36,6 +36,8 @@ h1{font-size:clamp(26px,5.5vw,35px);color:#f2d294;margin:8px auto 18px;line-heig
 .expansions a{color:#ffe0a0;text-decoration:underline;text-underline-offset:3px}
 #content>p{background:#291408d9;padding:10px;border-radius:8px}
 @media(max-width:400px){body{padding:14px 7px 30px}main{padding:0 4px}.button{font-size:16px}.rating-hero{padding:6px 0 10px}}
+
+.champion-grid{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:12px auto 18px;max-width:560px}.champion-card{flex:1 1 125px;max-width:170px;min-width:110px;background:#291408e6;border:1px solid #a9844d;border-radius:12px;padding:12px 8px;display:flex;flex-direction:column;align-items:center;gap:5px}.champion-photo{width:80px;height:80px;object-fit:cover;border:2px solid #d8af64;border-radius:50%;background:#54391f}.champion-placeholder{display:grid;place-items:center;font-size:40px}.champion-medal{font-size:25px}.champion-name{font-weight:bold;color:#f8e4bf;overflow-wrap:anywhere}.champion-wins{color:#d8af64;font-size:14px}.champion-history{color:#f6e6c6}.rating-hero{margin-top:35px}
 </style></head>
 
 
@@ -11766,7 +11768,7 @@ title.textContent=g.name;document.title=g.name+' | Joey’s Board Game Night';
 
 
 // Rating photo and score appear directly over the tree-bark page background.
-const hero=add('section',null,'rating-hero');
+const hero=document.createElement('section');hero.className='rating-hero';
 const img=add('img',null,'portrait',hero);img.alt='Joey rating reaction';
 
 
@@ -11806,18 +11808,33 @@ if(g.shelf!==null&&g.shelf!==undefined&&String(g.shelf).trim()!==''){
 if(g.expansions.length){const sec=add('section',null,'details expansions');add('h2','Expansions I Own','group-title',sec);for(const e of g.expansions){const p=add('div',null,null,sec);const a=add('a',e.name,null,p);a.href='https://boardgamegeek.com/boardgame/'+encodeURIComponent(e.id);a.target='_blank';a.rel='noopener noreferrer';}}
 
 
-const trackerTitle=add('h2','Game Plays & Player Results','group-title');
-const trackerFrame=add('iframe',null,'tracker-frame');
+// Top champions are fetched with JSONP because this website is hosted on GitHub Pages.
+const championSection=add('section',null,'champions');
+add('h2','🏆 Top Champions','group-title',championSection);
+const championBody=add('div','Loading champions…','champion-grid',championSection);
 const trackerLink=new URL(NFC_TRACKER_URL);trackerLink.searchParams.set('view','game');trackerLink.searchParams.set('bggId',id);trackerLink.searchParams.set('gameName',g.name);
-trackerFrame.src=trackerLink.toString();trackerFrame.title='Record plays and view results for '+g.name;trackerFrame.loading='lazy';trackerFrame.style.cssText='display:block;width:100%;height:850px;border:1px solid #b08b53;border-radius:12px;background:#28170f;margin:12px auto';
-const trackerOpen=add('a','Open Game Tracker in Full Screen','button');trackerOpen.href=trackerFrame.src;trackerOpen.target='_blank';trackerOpen.rel='noopener noreferrer';
-const quickRecord=add('a','🎲 Record This Game (Auto-filled)','button');quickRecord.href=trackerFrame.src;quickRecord.target='_blank';quickRecord.rel='noopener noreferrer';
-const stats=add('a','Log a Play on BG Stats','button');
-
-
-stats.href='https://app.bgstatsapp.com/addPlay.html?gameId='+encodeURIComponent(id);
-
-
+const quickRecord=add('a','🎲 Track This Game','button');quickRecord.href=trackerLink.toString();quickRecord.target='_blank';quickRecord.rel='noopener noreferrer';
+const history=add('p','Game history will appear after you record plays.','champion-history',championSection);
+function retrieveChampions(){
+ const callback='nfcChampions'+Math.floor(Math.random()*1000000000);
+ const script=document.createElement('script');
+ const timeout=setTimeout(()=>{if(window[callback]){delete window[callback];script.remove();championBody.textContent='Unable to load champions right now.';}},12000);
+ window[callback]=function(response){clearTimeout(timeout);delete window[callback];script.remove();
+  if(!response.ok){championBody.textContent='Unable to load champions.';return;}
+  history.textContent=(response.plays||0)+' recorded plays';championBody.textContent='';
+  const winners=response.champions||[];
+  if(!winners.length){championBody.textContent='No champions recorded yet. Record the first win!';return;}
+  const winnersByTier=[...new Set(winners.map(p=>p.wins))];
+  winners.forEach(p=>{const card=add('div',null,'champion-card',championBody);const tier=winnersByTier.indexOf(p.wins);
+    add('div',tier===0?'🥇':tier===1?'🥈':'🥉','champion-medal',card);
+    if(p.photo){const photo=add('img',null,'champion-photo',card);photo.src=p.photo;photo.alt=p.name;}
+    else{add('div','👤','champion-photo champion-placeholder',card);}
+    add('div',p.name,'champion-name',card);add('div',p.wins+(p.wins===1?' win':' wins'),'champion-wins',card);
+  });
+ };
+ const url=new URL(NFC_TRACKER_URL);url.searchParams.set('action','game');url.searchParams.set('bggId',id);url.searchParams.set('callback',callback);script.src=url.toString();script.onerror=()=>{clearTimeout(timeout);delete window[callback];script.remove();championBody.textContent='Unable to load champions.';};document.body.append(script);
+}
+retrieveChampions();
 const videoUrl=(typeof g.video==='string'?g.video.trim():'');
 
 
@@ -11942,6 +11959,7 @@ for(const [key,val] of fields){if(val==null||val==='')continue;add('div',key+': 
 
 
 if(!details.children.length)details.hidden=true;
+root.appendChild(hero); // Personal photo and ranking at bottom of game page.
 
 
 }
