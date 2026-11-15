@@ -54,6 +54,8 @@ h1{font-size:clamp(26px,5.5vw,35px);color:#f2d294;margin:8px auto 18px;line-heig
 const BOARDGAME_TV_HTTPS_BASE = 'https://desktop-mngnn3l.tail932da5.ts.net';
 
 
+const NFC_TRACKER_URL = 'https://script.google.com/macros/s/AKfycbw4G-LoqtK3mFbHkCR3uQ5WmD8bmTopmjh1d7QYqmybVUwN69qtv9CUDuJc2X2gXmKL/exec';
+
 const BOARDGAME_TV_PLAY_PATH = '/play'; // Must match your receiver.py route.
 
 
@@ -11713,9 +11715,11 @@ function sorted(items){return items.sort((a,b)=>a[1].name.localeCompare(b[1].nam
 function shelfView(s){title.textContent=shelfLabel(s);document.title=title.textContent;const matches=sorted(baseEntries().filter(([id,g])=>g.shelf!==null&&g.shelf!==undefined&&shelfKey(g.shelf)===shelfKey(s)));if(!matches.length)add('p','No games assigned to this shelf yet.');for(const [id,g] of matches)link(g.name,'game='+encodeURIComponent(id));}
 
 
-function room(){title.textContent='Game Room';const tabs=add('div',null,'tabs');link('Browse by Shelf','browse=shelves',tabs);link('Player Count','browse=players',tabs);}
+function room(){title.textContent='Game Room';const tabs=add('div',null,'tabs');link('Browse by Shelf','browse=shelves',tabs);link('Player Count','browse=players',tabs);link('All Games','browse=all');link('Players & Profiles','tracker=players');link('👍 Most Liked','tracker=leaderboard&type=liked');link('🎲 Most Played','tracker=leaderboard&type=played');link('🏆 Annual Player Rankings','tracker=leaderboard&type=performance');link('🥇 Most Player Wins','tracker=leaderboard&type=wins');}
 
 
+function allGames(){title.textContent='All Games';for(const [id,g] of sorted(baseEntries()))link(g.name,'game='+encodeURIComponent(id));}
+function trackerView(view){title.textContent=view==='players'?'Player Profiles':'Game Leaderboards';const frame=add('iframe',null,'tracker-frame');const u=new URL(NFC_TRACKER_URL);u.searchParams.set('view',view);if(query.has('type'))u.searchParams.set('type',query.get('type'));frame.src=u.toString();frame.title=title.textContent;frame.loading='lazy';frame.style.cssText='width:100%;height:850px;border:1px solid #b08b53;border-radius:12px;background:#28170f';const a=add('a','Open Tracker in Full Screen','button');a.href=frame.src;a.target='_blank';a.rel='noopener noreferrer';}
 function shelves(){title.textContent='Browse by Shelf';link('Unknown Shelf (Storage)','shelf=0');for(let i=1;i<=32;i++)link('Shelf '+i,'shelf='+i);link('Top Shelf','shelf=Top%20Shelf');link('Mixed','shelf=Mixed');}
 
 
@@ -11802,6 +11806,12 @@ if(g.shelf!==null&&g.shelf!==undefined&&String(g.shelf).trim()!==''){
 if(g.expansions.length){const sec=add('section',null,'details expansions');add('h2','Expansions I Own','group-title',sec);for(const e of g.expansions){const p=add('div',null,null,sec);const a=add('a',e.name,null,p);a.href='https://boardgamegeek.com/boardgame/'+encodeURIComponent(e.id);a.target='_blank';a.rel='noopener noreferrer';}}
 
 
+const trackerTitle=add('h2','Game Plays & Player Results','group-title');
+const trackerFrame=add('iframe',null,'tracker-frame');
+const trackerLink=new URL(NFC_TRACKER_URL);trackerLink.searchParams.set('view','game');trackerLink.searchParams.set('bggId',id);trackerLink.searchParams.set('gameName',g.name);
+trackerFrame.src=trackerLink.toString();trackerFrame.title='Record plays and view results for '+g.name;trackerFrame.loading='lazy';trackerFrame.style.cssText='display:block;width:100%;height:850px;border:1px solid #b08b53;border-radius:12px;background:#28170f;margin:12px auto';
+const trackerOpen=add('a','Open Game Tracker in Full Screen','button');trackerOpen.href=trackerFrame.src;trackerOpen.target='_blank';trackerOpen.rel='noopener noreferrer';
+const quickRecord=add('a','🎲 Record This Game (Auto-filled)','button');quickRecord.href=trackerFrame.src;quickRecord.target='_blank';quickRecord.rel='noopener noreferrer';
 const stats=add('a','Log a Play on BG Stats','button');
 
 
@@ -11940,6 +11950,8 @@ if(!details.children.length)details.hidden=true;
 if(query.has('game'))gameView(query.get('game'));
 
 
+else if(query.has('tracker'))trackerView(query.get('tracker'));
+else if(query.get('browse')==='all')allGames();
 else if(query.has('shelf'))shelfView(query.get('shelf'));
 
 
